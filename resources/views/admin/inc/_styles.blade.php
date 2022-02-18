@@ -19,13 +19,11 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/components.css') }}">
 <!-- END: Theme CSS-->
 
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/colors/palette-gradient.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/fonts/simple-line-icons/style.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/card-statistics.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/vertical-timeline.css') }}">
-<!-- END: Page CSS-->
+ <!-- BEGIN: Table Page CSS-->
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/colors/palette-gradient.css') }}">
+ <!-- END: Table Page CSS-->
 
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}">

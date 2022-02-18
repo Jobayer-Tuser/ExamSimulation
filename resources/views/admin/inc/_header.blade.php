@@ -4,7 +4,7 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="feather icon-menu font-large-1"></i></a></li>
-                <li class="nav-item"><a class="navbar-brand" href="../../../html/ltr/vertical-menu-template-semi-dark/index.html"><img class="brand-logo" alt="stack admin logo" src="../../../app-assets/images/logo/stack-logo-light.png">
+                <li class="nav-item"><a class="navbar-brand" href="#"><img class="brand-logo" alt="stack admin logo" src="{{ asset('assets/app-assets/images/logo/stack-logo-light.png') }}">
                         <h2 class="brand-text">Stack</h2>
                     </a></li>
                 <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
@@ -140,7 +140,7 @@
                             <li class="scrollable-container media-list"><a href="javascript:void(0)">
                                     <div class="media">
                                         <div class="media-left">
-                                            <div class="avatar avatar-online avatar-sm rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></div>
+                                            <div class="avatar avatar-online avatar-sm rounded-circle"><img src="{{ asset('assets/app-assets/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i></div>
                                         </div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Margaret Govan</h6>
@@ -150,7 +150,7 @@
                                     </div>
                                 </a><a href="javascript:void(0)">
                                     <div class="media">
-                                        <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-2.png" alt="avatar"><i></i></span></div>
+                                        <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="{{ asset('assets/app-assets/images/portrait/small/avatar-s-2.png') }}" alt="avatar"><i></i></span></div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Bret Lezama</h6>
                                             <p class="notification-text font-small-3 text-muted">I have seen your work, there is</p><small>
@@ -160,7 +160,7 @@
                                 </a><a href="javascript:void(0)">
                                     <div class="media">
                                         <div class="media-left">
-                                            <div class="avatar avatar-online avatar-sm rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-3.png" alt="avatar"><i></i></div>
+                                            <div class="avatar avatar-online avatar-sm rounded-circle"><img src="{{ asset('assets/app-assets/images/portrait/small/avatar-s-3.png') }}" alt="avatar"><i></i></div>
                                         </div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Carie Berra</h6>
@@ -170,7 +170,7 @@
                                     </div>
                                 </a><a href="javascript:void(0)">
                                     <div class="media">
-                                        <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span></div>
+                                        <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="{{ asset('assets/app-assets/images/portrait/small/avatar-s-6.png') }}" alt="avatar"><i></i></span></div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Eric Alsobrook</h6>
                                             <p class="notification-text font-small-3 text-muted">We have project party this saturday.</p><small>
@@ -182,7 +182,7 @@
                         </ul>
                     </li>
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                            <div class="avatar avatar-online"><img src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></div><span class="user-name">John Doe</span>
+                            <div class="avatar avatar-online"><img src="{{ asset('assets/app-assets/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i></div><span class="user-name">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="user-profile.html"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="feather icon-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="feather icon-message-square"></i> Chats</a>
                             <div class="dropdown-divider"></div><a class="dropdown-item" href="login-with-bg-image.html"><i class="feather icon-power"></i> Logout</a>

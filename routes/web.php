@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminTypeController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SliderGroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +28,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/home', function () {
-    return view('layouts.app');
+    return view('admin.layouts.app');
 });
+
+
+Route::resource('admintype', AdminTypeController::class);
+Route::resource('admin', AdminController::class);
+Route::resource('slider', SliderController::class);
+Route::resource('slidergroup', SliderGroupController::class);

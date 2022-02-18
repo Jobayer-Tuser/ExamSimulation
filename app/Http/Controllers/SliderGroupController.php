@@ -15,7 +15,7 @@ class SliderGroupController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.slider.index');
     }
 
     /**
