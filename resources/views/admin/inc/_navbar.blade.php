@@ -30,11 +30,11 @@
                 <ul class="menu-content">
                     <li><a class="menu-item" href="{{ route('slidergroup.index') }}" data-i18n="Full Calender Basic">Slider Group</a>
                     </li>
-                    <li><a class="menu-item" href="{{ route('slider.index') }}" data-i18n="Full Calender Events">Slider</a>
+                    <li><a class="menu-item" href="{{ route('slider.index') }}" data-i18n="Full Calender Events">List Slider</a>
                     </li>
-                    <li><a class="menu-item" href="full-calender-advance.html" data-i18n="Full Calender Advance">Full Calender Advance</a>
+                    <li><a class="menu-item" href="{{ route('slider.create') }}" data-i18n="Full Calender Advance">Create Slider</a>
                     </li>
-                    <li><a class="menu-item" href="full-calender-extra.html" data-i18n="Full Calender Extra">Full Calender Extra</a>
+                    <li><a class="menu-item" href="{{ route('slider.create') }}" data-i18n="Full Calender Extra">Edit Slider</a>
                     </li>
                 </ul>
             </li>

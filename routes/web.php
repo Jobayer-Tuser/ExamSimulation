@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminTypeController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SliderGroupController;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,4 @@ Route::resource('admintype', AdminTypeController::class);
 Route::resource('admin', AdminController::class);
 Route::resource('slider', SliderController::class);
 Route::resource('slidergroup', SliderGroupController::class);
+Route::resource('category', CategoryController::class);
