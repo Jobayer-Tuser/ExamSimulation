@@ -40,6 +40,17 @@
             </li>
             <!-- Slider Menu End -->
 
+             <!-- Slider Menu Start -->
+             <li class=" nav-item"><a href="#"><i class="feather icon-plus-square"></i><span class="menu-title" data-i18n="Calender">Category</span></a>
+                <ul class="menu-content">
+                    <li><a class="menu-item" href="{{ route('category.index') }}" data-i18n="Full Calender Basic">Category List</a>
+                    </li>
+                    <li><a class="menu-item" href="{{ route('category.index') }}" data-i18n="Full Calender Events">Create Category</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Slider Menu End -->
+
 
 
         </ul>
