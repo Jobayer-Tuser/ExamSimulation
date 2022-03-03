@@ -50,3 +50,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/colors/palette-gradient.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/plugins/file-uploaders/dropzone.css')}}">
+
+<!-- BEGIN: Quiz Question page CSS-->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/forms/toggle/switchery.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/colors/palette-gradient.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/app-invoice.css')}}">

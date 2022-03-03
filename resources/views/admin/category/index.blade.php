@@ -4,61 +4,18 @@
 
 @section('breadcrumb', 'Category list')
 
+@section('button')
+    <button data-toggle="modal" data-target="#createCategory" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
+@endsection
+
 @section('content')
-
-<!-- Basic Elements start -->
-<section class="basic-elements">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                                <fieldset class="form-group">
-                                    <label for="parent_category">Parent Category</label>
-                                    <select name="parent_category" class="custom-select block" id="parent_category">
-                                        <option selected="">Select Category</option>
-                                        <option value="Full width">BSC Exam </option>
-                                        <option value="Square"> PSC Exam</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                                <fieldset class="form-group">
-                                    <label for="image_title">Category Name</label>
-                                    <input name="category_name" type="text" class="form-control" id="category_name">
-                                </fieldset>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                                <fieldset class="form-group">
-                                    <label for="category_status">Category Status</label>
-                                    <select name="category_status" class="custom-select block" id="category_status">
-                                        <option selected="">Select Status</option>
-                                        <option value="1"> Active </option>
-                                        <option value="0"> Inactive</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-
-                            <div class="col-xl-6 col-lg-6 col-md-12 mt-2">
-                                <button type="button" class="btn btn-success btn-min-width mr-1 mb-1"><i class="fa fa-check"></i> Create</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Basic Inputs end -->
 
 <section id="configuration">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Admin type list</h4>
+                    <h4 class="card-title">Category list</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -87,12 +44,8 @@
                                     <td> Men </td>
                                     <td> Jeans </td>
                                     <td>
-                                        <div class="badge badge-warning round">
-                                            <a data-toggle="modal" data-target="#large" href=""> <i class="font-medium-3 icon-line-height feather icon-edit"></i> </a>
-                                        </div>
-                                        <div class="badge badge-danger round">
-                                            <i class="font-medium-3 icon-line-height feather icon-trash-2"></i>
-                                        </div>
+                                        <button data-toggle="modal" data-target="#editCategory" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                        <button data-toggle="modal" data-target="#deleteCategory" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
                                     </td>
                                 </tr>
 
@@ -115,19 +68,19 @@
 
 
 <!-- Modal -->
-<div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+<div class="modal fade text-left" id="createCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <form action="">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel17"> Edit Admin </h4>
+                    <h4 class="modal-title" id="myModalLabel17"> Create Category </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                        <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="parent_category">Parent Category</label>
                                 <select name="parent_category" class="custom-select block" id="parent_category">
@@ -137,13 +90,13 @@
                                 </select>
                             </fieldset>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="image_title">Category Name</label>
                                 <input name="category_name" type="text" class="form-control" id="category_name">
                             </fieldset>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="category_status">Category Status</label>
                                 <select name="category_status" class="custom-select block" id="category_status">
@@ -157,7 +110,57 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Update</button>
+                    <button type="button" class="btn btn-outline-success">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade text-left" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17"> Edit Category </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+                            <fieldset class="form-group">
+                                <label for="parent_category">Parent Category</label>
+                                <select name="parent_category" class="custom-select block" id="parent_category">
+                                    <option value="">Select Category</option>
+                                    <option selected="" value="BSC Exam">BSC Exam </option>
+                                    <option value=""> PSC Exam</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                            <fieldset class="form-group">
+                                <label for="category_name">Category Name</label>
+                                <input name="category_name" value="Bangla MCQ Question" type="text" class="form-control" id="category_name">
+                            </fieldset>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                            <fieldset class="form-group">
+                                <label for="category_status">Category Status</label>
+                                <select name="category_status" class="custom-select block" id="category_status">
+                                    <option ">Select Status</option>
+                                    <option selected="" value="1"> Active </option>
+                                    <option value="0"> Inactive</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-success">Save</button>
                 </div>
             </div>
         </form>

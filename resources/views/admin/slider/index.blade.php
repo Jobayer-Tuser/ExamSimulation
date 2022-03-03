@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Admin type list</h4>
+                    <h4 class="card-title">Slider list</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -47,7 +47,7 @@
                                     <td> 1 </td>
                                     <td>
                                         <a href="" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </a>
-                                        <button data-toggle="modal" data-target="#deleteSliderGroup" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                        <button data-toggle="modal" data-target="#deleteSlider" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
                                     </td>
                                 </tr>
 
@@ -68,6 +68,31 @@
         </div>
     </div>
 </section>
+
+
+<!-- Modal -->
+<div class="modal fade text-left" id="deleteSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-default" role="document">
+        <form action="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17"> <strong> Delete Slider </strong>  </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5> Are you sure want to delete <strong> Banner slider </strong>!</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-success" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-danger">Confirm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 @endsection
 

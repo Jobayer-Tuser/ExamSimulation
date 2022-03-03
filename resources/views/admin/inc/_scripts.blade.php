@@ -21,3 +21,9 @@
  <script src="{{asset('assets/app-assets/vendors/js/extensions/dropzone.min.js')}}"></script>
  <script src="{{asset('assets/app-assets/vendors/js/ui/prism.min.js')}}"></script>
  <script src="{{asset('assets/app-assets/js/scripts/extensions/dropzone.js')}}"></script>
+
+ <!-- BEGIN: Page Vendor JS-->
+ <script src="{{ asset('assets/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
+ <script src="{{ asset('assets/app-assets/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"></script>
+ <script src="{{ asset('assets/app-assets/vendors/js/forms/toggle/switchery.min.js')}}"></script>
+ <script src="{{ asset('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>

@@ -196,11 +196,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5> Are you sure want to delete <strong> Nirjhor Anjum </strong> !</h5>
+                    <h5> Are you sure want to delete <strong> Nirjhor Anjum </strong>!</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-success" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    <button type="submit" class="btn btn-outline-danger">Confirm</button>
                 </div>
             </div>
         </form>
