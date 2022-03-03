@@ -1,11 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminTypeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\SliderGroupController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +35,11 @@ Route::get('/home', function () {
     return view('admin.layouts.app');
 });
 
-
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('admintype', AdminTypeController::class);
 Route::resource('admin', AdminController::class);
 Route::resource('slider', SliderController::class);
 Route::resource('slidergroup', SliderGroupController::class);
 Route::resource('category', CategoryController::class);
+Route::resource('question', QuestionController::class);
+Route::resource('answer', AnswerController::class);

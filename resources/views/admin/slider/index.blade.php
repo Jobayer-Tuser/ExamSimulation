@@ -4,8 +4,11 @@
 
 @section('breadcrumb', 'Slider List')
 
-@section('content')
+@section('button')
+    <a href=" {{ route('slider.create') }} " type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </a>
+@endsection
 
+@section('content')
 
 <section id="configuration">
     <div class="row">
@@ -29,22 +32,22 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" value="" checked=""></th>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th>Group name</th>
+                                    <th>Title</th>
+                                    <th>Sequence</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
                                     <td><input type="checkbox" value="" checked=""></td>
-                                    <td> Super Admin</td>
+                                    <td> BSC </td>
+                                    <td> Exam banner </td>
+                                    <td> 1 </td>
                                     <td>
-                                        <div class="badge badge-success round">
-                                            <i class="font-medium-2 icon-line-height feather icon-edit"></i>
-                                        </div>
-                                        <div class="badge badge-success round">
-                                            <i class="font-medium-2 icon-line-height feather icon-trash-2"></i>
-                                        </div>
+                                        <a href="" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </a>
+                                        <button data-toggle="modal" data-target="#deleteSliderGroup" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
                                     </td>
                                 </tr>
 
@@ -52,8 +55,10 @@
                             <tfoot>
                                 <tr>
                                     <th></th>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th>Group name</th>
+                                    <th>Title</th>
+                                    <th>Sequence</th>
+                                    <th>Status</th>
                                 </tr>
                             </tfoot>
                         </table>

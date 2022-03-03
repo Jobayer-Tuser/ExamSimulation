@@ -1,10 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', ' Category List')
+@section('title', 'Question Bank')
 
-@section('breadcrumb', 'Category list')
+@section('breadcrumb', 'Question list')
 
 @section('content')
+
 
 <!-- Basic Elements start -->
 <section class="basic-elements">
@@ -14,7 +15,7 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                            <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                 <fieldset class="form-group">
                                     <label for="parent_category">Parent Category</label>
                                     <select name="parent_category" class="custom-select block" id="parent_category">
@@ -24,24 +25,16 @@
                                     </select>
                                 </fieldset>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                            <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                 <fieldset class="form-group">
-                                    <label for="image_title">Category Name</label>
-                                    <input name="category_name" type="text" class="form-control" id="category_name">
-                                </fieldset>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                                <fieldset class="form-group">
-                                    <label for="category_status">Category Status</label>
-                                    <select name="category_status" class="custom-select block" id="category_status">
-                                        <option selected="">Select Status</option>
-                                        <option value="1"> Active </option>
-                                        <option value="0"> Inactive</option>
-                                    </select>
+                                    <label for="question_details">Question Details</label>
+                                    <textarea name="question_details" type="text" class="form-control" id="question_details">
+
+                                    </textarea>
                                 </fieldset>
                             </div>
 
-                            <div class="col-xl-6 col-lg-6 col-md-12 mt-2">
+                            <div class="col-xl-6 col-lg-6 col-md-12">
                                 <button type="button" class="btn btn-success btn-min-width mr-1 mb-1"><i class="fa fa-check"></i> Create</button>
                             </div>
                         </div>
@@ -76,7 +69,7 @@
                                 <tr>
                                     <th><input type="checkbox" value="" checked=""></th>
                                     <th>Parent Category</th>
-                                    <th>Category Name</th>
+                                    <th>Question</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -84,8 +77,8 @@
 
                                 <tr>
                                     <td><input type="checkbox" value="" checked=""></td>
-                                    <td> Men </td>
-                                    <td> Jeans </td>
+                                    <td> BCS </td>
+                                    <td> Who is the prime miniter of bangldesh? </td>
                                     <td>
                                         <div class="badge badge-warning round">
                                             <a data-toggle="modal" data-target="#large" href=""> <i class="font-medium-3 icon-line-height feather icon-edit"></i> </a>
@@ -127,7 +120,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="parent_category">Parent Category</label>
                                 <select name="parent_category" class="custom-select block" id="parent_category">
@@ -137,20 +130,12 @@
                                 </select>
                             </fieldset>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
-                                <label for="image_title">Category Name</label>
-                                <input name="category_name" type="text" class="form-control" id="category_name">
-                            </fieldset>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                            <fieldset class="form-group">
-                                <label for="category_status">Category Status</label>
-                                <select name="category_status" class="custom-select block" id="category_status">
-                                    <option selected="">Select Status</option>
-                                    <option value="1"> Active </option>
-                                    <option value="0"> Inactive</option>
-                                </select>
+                                <label for="question_details">Question Details</label>
+                                <textarea name="question_details" type="text" class="form-control" id="question_details">
+                                    Who is the prime miniter of bangldesh?
+                                </textarea>
                             </fieldset>
                         </div>
                     </div>

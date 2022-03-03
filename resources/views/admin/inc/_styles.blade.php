@@ -25,6 +25,28 @@
  <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/colors/palette-gradient.css') }}">
  <!-- END: Table Page CSS-->
 
+ <!-- BEGIN: Vendor CSS-->
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/vendors.min.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/extensions/unslider.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/weather-icons/climacons.min.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/fonts/meteocons/style.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/charts/morris.css')}}">
+ <!-- END: Vendor CSS-->
+
+ <!-- BEGIN: Dasboard Page CSS-->
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/colors/palette-gradient.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/fonts/simple-line-icons/style.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/timeline.css')}}">
+ <!-- END: Page CSS-->
+
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}">
 <!-- END: Custom CSS-->
+
+<!-- BEGIN: Slider Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/vendors/css/ui/prism.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/vendors/css/file-uploaders/dropzone.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/colors/palette-gradient.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/plugins/file-uploaders/dropzone.css')}}">
