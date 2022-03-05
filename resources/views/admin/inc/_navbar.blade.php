@@ -34,18 +34,36 @@
             </li>
             <!-- Slider Menu End -->
 
-             <!-- Category Menu Start -->
-             <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">Category</span></a>
+             <!-- Page Menu End -->
+
+             <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">Page</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Request::is('page') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('page.index') }}" data-i18n="Full Calender Basic">Pages</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- SEO Menu End -->
+
+            <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">SEO</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Request::is('seo') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('seo.index') }}" data-i18n="Full Calender Basic">Seo</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class=" navigation-header"><span>Quiz</span><i class=" feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="General"></i>
+            </li>
+
+            <!-- Category Menu Start -->
+            <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">Category</span></a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('category') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('category.index') }}" data-i18n="Full Calender Basic">Category</a>
                     </li>
                 </ul>
             </li>
             <!-- Category Menu End -->
-
-
-            <li class=" navigation-header"><span>General</span><i class=" feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="General"></i>
-            </li>
 
             <!-- Question Menu Start -->
             <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">Question</span></a>
@@ -54,16 +72,24 @@
                     </li>
                 </ul>
             </li>
-            <!-- Question Menu End -->
 
-             <!-- An Menu Start -->
-             <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">Answer</span></a>
+            <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">Test</span></a>
                 <ul class="menu-content">
-                    <li class="{{ Request::is('answer') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('answer.index') }}" data-i18n="Full Calender Basic">Answer</a>
+                    <li class="{{ Request::is('test') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('test.index') }}" data-i18n="Test">Answer</a>
                     </li>
                 </ul>
             </li>
-            <!-- Slider Menu End -->
+            <!-- Question Menu End -->
+
+            <!-- Coupon Menu End -->
+            <li class=" navigation-header"><span>Sales</span><i class=" feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="E-Commerce"></i>
+            </li>
+            <li class=" nav-item"><a href="#"><i class="feather icon-sliders"></i><span class="menu-title" data-i18n="Calender">Coupon</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Request::is('coupon') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('coupon.index') }}" data-i18n="Full Calender Basic">Coupon List</a>
+                    </li>
+                </ul>
+            </li>
 
 
 

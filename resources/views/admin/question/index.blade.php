@@ -1,7 +1,5 @@
 @extends('admin.layouts.app')
-
 @section('title', 'Question Bank')
-
 @section('breadcrumb', 'Question list')
 
 @section('button')
@@ -9,13 +7,12 @@
 @endsection
 
 @section('content')
-
 <section id="configuration">
-    <div class="row">
+    <div class="row mt-1">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Admin type list</h4>
+                    <h4 class="card-title">Question list</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -165,11 +162,19 @@
                             <form class="repeater-form">
                                 <div data-repeater-list="group-a">
                                     <div data-repeater-item class="mb-1">
+
+                                        <div class="col-12 col-md-3 form-group item-cost">
+                                            <input name="answer[]" type="text" class="form-control" value="24">
+                                        </div>
+                                        <div class="form-group">
+                                            <button data-repeater-create class="btn btn-primary mt-1" type="button">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+
                                         <div class="row item-heading-titles mb-50">
                                             <div class="col-3 col-md-4 item-subtitle font-bold">Item</div>
                                             <div class="col-3 cost-subtitle font-bold">Cost</div>
-                                            <div class="col-3 qty-subtitle font-bold">Qty</div>
-                                            <div class="col-3 col-md-2 price-subtitle font-bold">Price</div>
                                         </div>
                                         <div class="repeater-controls d-flex">
                                             <div class="input-fields border border-light rounded p-1 d-flex">
@@ -293,7 +298,6 @@
     });
 </script>
 @endpush
-
 
 @endsection
 

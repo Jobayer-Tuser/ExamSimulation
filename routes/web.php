@@ -7,8 +7,12 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SliderGroupController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\SeoController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +47,8 @@ Route::resource('slidergroup', SliderGroupController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('question', QuestionController::class);
 Route::resource('answer', AnswerController::class);
+Route::resource('test', TestController::class);
+Route::resource('coupon', CouponController::class);
+Route::resource('page', PageController::class);
+Route::resource('seo', SeoController::class);
+
