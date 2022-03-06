@@ -1,13 +1,10 @@
 @extends('admin.layouts.app')
-
 @section('title', 'Admin list')
-
 @section('breadcrumb', 'Admin List')
 
 @section('button')
     <button data-toggle="modal" data-target="#createAdmin" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
 @endsection
-
 @section('content')
 
 <section id="configuration">
@@ -31,7 +28,7 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" value="" checked=""></th>
+                                    <th>Sl No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Type</th>
@@ -41,7 +38,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="checkbox" value="" checked=""></td>
+                                    <td> 1 </td>
                                     <td> Nirjhor Anjum  </td>
                                     <td> niirjhor.anjum@gmail.com </td>
                                     <td> Active </td>
@@ -54,7 +51,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>Sl No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Type</th>
@@ -169,7 +166,6 @@
                                 <select name="admin_type" class="custom-select block" id="admin_type">
                                     <option  selected="" value="1"selected="">Active</option>
                                     <option value="0">Inactive</option>
-
                                 </select>
                             </fieldset>
                         </div>

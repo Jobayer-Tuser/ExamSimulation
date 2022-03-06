@@ -29,7 +29,7 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" value="" checked=""></th>
+                                    <th>Sl no.</th>
                                     <th>Coupon code</th>
                                     <th>Discount amount</th>
                                     <th>Total useable</th>
@@ -41,7 +41,7 @@
                             <tbody>
 
                                 <tr>
-                                    <td><input type="checkbox" value="" checked=""></td>
+                                    <td>1</td>
                                     <td> Spring2022 </td>
                                     <td> 120 tk </td>
                                     <td> 12 </td>
@@ -56,7 +56,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>Sl no.</th>
                                     <th>Coupon code</th>
                                     <th>Discount amount</th>
                                     <th>Total useable</th>

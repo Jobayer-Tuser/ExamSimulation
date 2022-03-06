@@ -15,7 +15,7 @@ class TestQuestionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.test.question');
     }
 
     /**

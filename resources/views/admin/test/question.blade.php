@@ -1,10 +1,11 @@
 @extends('admin.layouts.app')
-@section('title', 'All Test Bank')
-@section('breadcrumb', ' Test list ')
+@section('title', 'All Test Question')
+@section('breadcrumb', ' All Question List')
 
-@section('button')
-    <button data-toggle="modal" data-target="#createTest" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
-@endsection
+{{-- @section('button')
+    <button data-toggle="modal" data-target="#createTestQuestion" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
+@endsection --}}
+
 
 @section('content')
 
@@ -32,6 +33,7 @@
                                     <th>Sl No.</th>
                                     <th>Test Name </th>
                                     <th>Question</th>
+                                    <th>Answer</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,6 +43,7 @@
                                     <td> 1 </td>
                                     <td> BCS </td>
                                     <td> Who is the prime miniter of bangldesh? </td>
+                                    <td> Sheikh Hasina </td>
                                     <td>
                                         <button data-toggle="modal" data-target="#editQuestion" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
                                         <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
@@ -53,6 +56,7 @@
                                     <th>Sl No.</th>
                                     <th>Test Name </th>
                                     <th>Question</th>
+                                    <th>Answer</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -65,7 +69,7 @@
 </section>
 
 <!-- Careate Question Modal -->
-<div class="modal fade text-left" id="createTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+<div class="modal fade text-left" id="createTestQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <form action="">
             <div class="modal-content">
@@ -97,6 +101,16 @@
                                 </select>
                             </fieldset>
                         </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                            <fieldset class="form-group">
+                                <label for="question_details"> Answer</label>
+                                <select name="parent_category" class="custom-select block" id="parent_category">
+                                    <option selected="">Select Question</option>
+                                    <option value="BSC Exam">BSC Exam </option>
+                                    <option value="PSC Exam"> PSC Exam</option>
+                                </select>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -108,45 +122,4 @@
     </div>
 </div>
 
-<!-- Edit Question Modal -->
-<div class="modal fade text-left" id="editQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel17"> Edit Question </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
-                            <fieldset class="form-group">
-                                <label for="parent_category">Parent Category</label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
-                                    <option selected="">Select Category</option>
-                                    <option value="Full width">BSC Exam </option>
-                                    <option value="Square"> PSC Exam</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
-                            <fieldset class="form-group">
-                                <label for="question_details">Question Details</label>
-                                <textarea name="question_details" type="text" class="form-control" id="question_details">Who is the prime miniter of bangldesh?</textarea>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Update</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
 @endsection
-

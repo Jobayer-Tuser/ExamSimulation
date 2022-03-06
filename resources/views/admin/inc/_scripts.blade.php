@@ -27,3 +27,10 @@
  <script src="{{ asset('assets/app-assets/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"></script>
  <script src="{{ asset('assets/app-assets/vendors/js/forms/toggle/switchery.min.js')}}"></script>
  <script src="{{ asset('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
+
+  <!-- BEGIN: Vendor JS-->
+  <script src="{{ asset('assets/app-assets/vendors/js/forms/icheck/icheck.min.js')}}"></script>
+  <script src="{{ asset('assets/app-assets/js/core/app-menu.min.js')}}"></script>
+  <script src="{{ asset('assets/app-assets/js/core/app.min.js')}}"></script>
+  <script src="{{ asset('assets/app-assets/js/scripts/customizer.min.js')}}"></script>
+  <script src="{{ asset('assets/app-assets/js/scripts/forms/checkbox-radio.min.js')}}"></script>

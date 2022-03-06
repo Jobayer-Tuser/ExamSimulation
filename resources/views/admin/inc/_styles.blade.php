@@ -26,7 +26,6 @@
  <!-- END: Table Page CSS-->
 
  <!-- BEGIN: Vendor CSS-->
- <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/vendors.min.css')}}">
  <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/extensions/unslider.css')}}">
  <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/weather-icons/climacons.min.css')}}">
  <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/fonts/meteocons/style.css')}}">
@@ -55,3 +54,12 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/forms/toggle/switchery.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/colors/palette-gradient.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/app-invoice.css')}}">
+
+<!-- BEGIN: Question & Answer Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/forms/icheck/icheck.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/forms/icheck/custom.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/menu/menu-types/vertical-menu-modern.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/colors/palette-gradient.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/plugins/forms/checkboxes-radios.min.css')}}">
+<!-- END: Question & Answer Vendor CSS-->
+

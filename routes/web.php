@@ -10,9 +10,11 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SliderGroupController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +53,6 @@ Route::resource('test', TestController::class);
 Route::resource('coupon', CouponController::class);
 Route::resource('page', PageController::class);
 Route::resource('seo', SeoController::class);
+Route::resource('order', OrderController::class);
+Route::resource('testquestion', TestQuestionController::class);
 

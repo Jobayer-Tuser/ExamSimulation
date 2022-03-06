@@ -1,9 +1,6 @@
 @extends('admin.layouts.app')
-
 @section('title', 'Admin Dashboard')
-
-@section('breadcrumb', 'Dashboard')
-
+@section('breadcrumb', 'Dashboard')2
 @section('content')
 
 <div class="row">

@@ -37,7 +37,7 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" value="" checked=""></th>
+                                        <th>Sl No.</th>
                                         <th>Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -45,7 +45,7 @@
                                 <tbody>
 
                                     <tr>
-                                        <td><input type="checkbox" value="" checked=""></td>
+                                        <td>1</td>
                                         <td> Super Admin</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#editAdminType" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
@@ -56,7 +56,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <th>Sl No.</th>
                                         <th>Name</th>
                                         <th>Action</th>
                                     </tr>
