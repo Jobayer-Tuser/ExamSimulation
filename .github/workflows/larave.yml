@@ -44,4 +44,4 @@ jobs:
         server: superbnexus.net
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_pass }}
-        server-dir: /public_html/software/exam
+        server-dir: /public_html/software/exam/
