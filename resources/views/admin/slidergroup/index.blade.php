@@ -31,7 +31,7 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" value="" checked=""></th>
+                                    <th>Sl No.</th>
                                     <th>Slider type</th>
                                     <th>Group Name</th>
                                     <th>Action</th>
@@ -40,7 +40,7 @@
                             <tbody>
 
                                 <tr>
-                                    <td><input type="checkbox" value="" checked=""></td>
+                                    <td> 1 </td>
                                     <td> Square</td>
                                     <td> Banner</td>
                                     <td>
@@ -52,7 +52,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>Sl No.</th>
                                     <th>Slider type</th>
                                     <th>Group Name</th>
                                     <th>Action</th>

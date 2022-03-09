@@ -39,25 +39,35 @@
                                     <tr>
                                         <th>Sl No.</th>
                                         <th>Name</th>
+                                        <th>Created At</th>
+                                        <th>Updated At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td> Super Admin</td>
-                                        <td>
-                                            <button data-toggle="modal" data-target="#editAdminType" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                            <button data-toggle="modal" data-target="#deleteAdminType" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                        </td>
-                                    </tr>
+                                    @php $n = 1 @endphp
+                                    @if ( !empty($admin) )
+                                        @foreach( $admin as $each )
+                                            <tr>
+                                                <td> {{ $n++ }}</td>
+                                                <td> {{ $each->type_name }} </td>
+                                                <td> {{ ($each->created_at)->diffForHumans(); }} </td>
+                                                <td> {{ ($each->updated_at)->diffForHumans(); }} </td>
+                                                <td>
+                                                    <button data-toggle="modal" data-target="#editAdminType" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                    <button data-toggle="modal" data-target="#deleteAdminType" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
 
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Sl No.</th>
                                         <th>Name</th>
+                                        <th>Created At</th>
+                                        <th>Updated At</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -72,7 +82,8 @@
 <!-- Modal -->
 <div class="modal fade text-left" id="createAdminType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-default" role="document">
-        <form action="">
+        <form action="{{ route('admintype.store') }}" method="POST">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Create new admin type </h4>
@@ -91,7 +102,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn grey btn-outline-warning" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn grey btn-outline-warning" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-outline-success">Save </button>
                 </div>
             </div>

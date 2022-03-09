@@ -31,7 +31,7 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" value="" checked=""></th>
+                                    <th>Sl No.</th>
                                     <th>Group name</th>
                                     <th>Title</th>
                                     <th>Sequence</th>
@@ -41,7 +41,7 @@
                             <tbody>
 
                                 <tr>
-                                    <td><input type="checkbox" value="" checked=""></td>
+                                    <td>1</td>
                                     <td> BSC </td>
                                     <td> Exam banner </td>
                                     <td> 1 </td>
@@ -54,7 +54,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>Sl No.</th>
                                     <th>Group name</th>
                                     <th>Title</th>
                                     <th>Sequence</th>

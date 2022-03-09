@@ -31,7 +31,7 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" value="" checked=""></th>
+                                    <th>Sl No.</th>
                                     <th>Parent Category</th>
                                     <th>Category Name</th>
                                     <th>Status</th>
@@ -40,7 +40,7 @@
                             <tbody>
 
                                 <tr>
-                                    <td><input type="checkbox" value="" checked=""></td>
+                                    <td>1</td>
                                     <td> Men </td>
                                     <td> Jeans </td>
                                     <td>
@@ -52,7 +52,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>Sl No.</th>
                                     <th>Parent Category</th>
                                     <th>Category Name</th>
                                     <th>Status</th>
