@@ -16,7 +16,7 @@ class CreateTestsTable extends Migration
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('question_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->string('test_name');
+            $table->string('name');
             $table->timestamps();
         });
     }

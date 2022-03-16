@@ -15,11 +15,11 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('admin_name', 128);
-            $table->string('admin_email', 64)->unique();
+            $table->string('name', 128);
+            $table->string('email', 64)->unique();
             $table->foreignId('admin_type_id')->constrained('admin_types')->cascadeOnUpdate()->restrictOnDelete();
-            $table->string('admin_password', 64);
-            $table->enum('status', [0, 1]);
+            $table->string('password', 64);
+            $table->enum('status', [0, 1])->comment('0 = active, 1 = active');
             $table->timestamps();
         });
     }
