@@ -41,7 +41,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.2.0
       with:
-        server: superbnexus.net
+        server: jobayertuser.tk
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_pass }}
-        server-dir: /public_html/software/exam/
+        server-dir: /public_html/
