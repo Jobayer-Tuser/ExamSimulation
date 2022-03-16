@@ -15,7 +15,7 @@ class CreateAdminTypesTable extends Migration
     {
         Schema::create('admin_types', function (Blueprint $table) {
             $table->id();
-            $table->string('type_name', 128);
+            $table->string('name', 128);
             $table->timestamps();
         });
     }

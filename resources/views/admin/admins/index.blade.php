@@ -98,18 +98,16 @@
                                 <label for="admintype">Select type</label>
                                 <select name="admin_type" class="custom-select block" id="admin_type">
                                     <option value="Admin">Admin</option>
-                                    <option value="2">Super Admin</option>
-                                    <option value="3">Manager</option>
+
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                             <fieldset class="form-group">
-                                <label for="admintype">Select status</label>
-                                <select name="admin_type" class="custom-select block" id="admin_type">
+                                <label for="adminstatus">Select status</label>
+                                <select name="admin_status" class="custom-select block" id="admin_status">
                                     <option value="1"selected="">Active</option>
                                     <option value="0">Inactive</option>
-
                                 </select>
                             </fieldset>
                         </div>

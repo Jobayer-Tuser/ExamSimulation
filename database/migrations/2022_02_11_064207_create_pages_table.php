@@ -15,10 +15,10 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->text('page_url');
-            $table->text('page_title');
-            $table->text('page_content');
-            $table->enum('page_satus', [0, 1]);
+            $table->text('url');
+            $table->text('title');
+            $table->text('content');
+            $table->enum('status', [0, 1])->comment('0= inactive, 1= active');
             $table->timestamps();
         });
     }

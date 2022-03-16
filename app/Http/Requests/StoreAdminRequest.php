@@ -13,7 +13,7 @@ class StoreAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'admin_name'    => 'required',
+            'admin_email'   => 'email|unique:table,column,except,id',
+            'admin_type'    => 'require',
+            'admin_status'  => 'required',
         ];
     }
 }

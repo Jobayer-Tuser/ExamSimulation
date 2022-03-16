@@ -17,7 +17,7 @@ class CreateAnswersTable extends Migration
             $table->id();
             $table->foreignId('question_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->string('answers');
-            $table->string('answer_status');
+            $table->string('status');
             $table->timestamps();
         });
     }

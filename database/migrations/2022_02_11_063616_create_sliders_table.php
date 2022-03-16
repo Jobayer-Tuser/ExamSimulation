@@ -16,7 +16,7 @@ class CreateSlidersTable extends Migration
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('group_id')->constrained('slider_groups')->cascadeOnUpdate()->restrictOnDelete();
-            $table->string('image_title');
+            $table->string('title');
             $table->string('target_link');
             $table->enum('target_type', ['_self', '_blank']);
             $table->string('file_name');

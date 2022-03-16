@@ -16,7 +16,7 @@ class CreateSliderGroupsTable extends Migration
         Schema::create('slider_groups', function (Blueprint $table) {
             $table->id();
             $table->string('slider_type', 64);
-            $table->string('group_name', 128);
+            $table->string('name', 128);
             $table->timestamps();
         });
     }
