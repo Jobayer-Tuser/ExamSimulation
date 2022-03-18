@@ -9,5 +9,15 @@ class AdminType extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['name'];
+
+    public function admins()
+    {
+        return $this->hasMany(Admin::class);
+    }
+
+    public function scopeAllType($query)
+    {
+        return $query->select('id','name');
+    }
 }

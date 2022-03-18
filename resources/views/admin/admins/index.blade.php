@@ -28,26 +28,34 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th>Sl No.</th>
+                                    <th class="min">Sl No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Type</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td> 1 </td>
-                                    <td> Nirjhor Anjum  </td>
-                                    <td> niirjhor.anjum@gmail.com </td>
-                                    <td> Active </td>
-                                    <td> Super Admin </td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#editAdmin" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                        <button data-toggle="modal" data-target="#deleteAdmin" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                    </td>
-                                </tr>
+                                @php
+                                    $n = 1;
+                                @endphp
+                                @if ( !empty($admins) )
+                                    @foreach ($admins as $admin)
+                                        <tr>
+                                            <td> {{ $n++ }} </td>
+                                            <td> {{ $admin->name }}  </td>
+                                            <td> {{ $admin->email }} </td>
+                                            <td></td>
+                                            {{-- <td> {{ $admin->admintype->name }} </td> --}}
+                                            <td> {{ $admin->status }} </td>
+                                            <td>
+                                                <button data-toggle="modal" data-target="#editAdmin" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                <button data-toggle="modal" data-target="#deleteAdmin" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -71,7 +79,8 @@
 <!-- Modal -->
 <div class="modal fade text-left" id="createAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form action="{{ route('admin.store') }}" method="POST">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Add New Admin </h4>
@@ -81,31 +90,41 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="basicInput">Name</label>
-                                <input name="admin_name" type="text" class="form-control" id="admin_name">
+                                <input name="name" type="text" class="form-control" id="admin_name" required />
                             </fieldset>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="basicInput">Email</label>
-                                <input name="admin_email" type="email" class="form-control" id="admin_email">
+                                <input name="email" type="email" class="form-control" id="admin_email" required />
+                            </fieldset>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                            <fieldset class="form-group">
+                                <label for="basicInput">Password</label>
+                                <input name="password" type="password" class="form-control" id="admin_pass" required />
                             </fieldset>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="admintype">Select type</label>
-                                <select name="admin_type" class="custom-select block" id="admin_type">
-                                    <option value="Admin">Admin</option>
-
+                                <select name="admin_type_id" class="custom-select block" id="admin_type" required >
+                                    <option value="" selected>Select</option>
+                                    @if (!empty($admintypes))
+                                        @foreach ($admintypes as $admintype )
+                                            <option value="{{ $admintype->id }}"> {{ $admintype->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="adminstatus">Select status</label>
-                                <select name="admin_status" class="custom-select block" id="admin_status">
+                                <select name="status" class="custom-select block" id="admin_status" required>
                                     <option value="1"selected="">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
@@ -115,7 +134,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
                 </div>
             </div>
         </form>

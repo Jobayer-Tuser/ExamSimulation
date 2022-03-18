@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
 use App\Models\AdminType;
 use Exception;
 use Illuminate\Http\Request;
@@ -17,34 +16,32 @@ class AdminTypeController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'admin_type' => 'required|string',
+        $validateData = $request->validate([
+            'name' => 'required|string',
         ]);
 
         try {
-            AdminType::create([
-                'type_name' => $request->admin_type,
-            ]);
+            AdminType::create($validateData);
+            notify()->success('Admin type created successfully!');
             return redirect(route('admintype.index'));
-        } catch ( Exception $exception ) {
+        } catch (Exception $exception) {
             return $exception->getMessage();
         }
-
     }
 
     public function update(Request $request, AdminType $admintype)
     {
-        $validated = $request->validate([
-            'admin_type' => 'required|string',
-        ]);
+        $validateData = $request->validate([ 'name' => 'required|string|between:3,50' ]);
 
         try {
 
-            $admintype->type_name = $request->admin_type;
+            $admintype->name        = $validateData;
+            $admintype->updated_at  = now()->toDateTimeString();
             $admintype->save();
 
+            notify()->success('Admin type updated successfully!');
             return redirect(route('admintype.index'));
-        } catch ( Exception $exception ) {
+        } catch (Exception $exception) {
             return $exception->getMessage();
         }
 
@@ -52,7 +49,8 @@ class AdminTypeController extends Controller
 
     public function destroy(AdminType $admintype)
     {
-        if ($admintype->delete()){
+        if ($admintype->delete()) {
+            notify()->success('Admin type deleted successfully!');
             return redirect(route('admintype.index'));
         }
     }

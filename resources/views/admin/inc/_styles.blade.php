@@ -1,3 +1,9 @@
+@include('notify::components.notify')
+@notifyCss
+
+<style type="text/css">
+    .notify{ z-index: 1000000; }
+</style>
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

@@ -6,15 +6,6 @@
     <button data-toggle="modal" data-target="#createAdminType" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
 @endsection
 
-@push('css')
-<style>
-    th.sorting_asc {
-        max-width: 100px !important;
-    }
-
-</style>
-@endpush
-
 @section('content')
     <section id="configuration">
         <div class="row mt-1">
@@ -37,11 +28,11 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th>Sl No.</th>
+                                        <th class="min">Sl No.</th>
                                         <th>Name</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
-                                        <th>Action</th>
+                                        <th class="min">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +41,7 @@
                                         @foreach( $admin as $each )
                                             <tr>
                                                 <td> {{ $n++ }}</td>
-                                                <td> {{ $each->type_name }} </td>
+                                                <td> {{ $each->name }} </td>
                                                 <td> {{ ($each->created_at)->diffForHumans(); }} </td>
                                                 <td> {{ ($each->updated_at)->diffForHumans(); }} </td>
                                                 <td>
@@ -96,7 +87,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <fieldset class="form-group">
                                 <label for="admin_type"> Name </label>
-                                <input name="admin_type" type="text" class="form-control" id="admin_type" required>
+                                <input name="name" type="text" class="form-control" id="admin_type" required>
                             </fieldset>
                         </div>
                     </div>
@@ -166,6 +157,23 @@
         </form>
     </div>
 </div>
+
+
+{{-- <div class="btn btn-outline-primary toast-toggler">Toast</div>
+
+<div class="toast fade hide" aria-live="assertive" aria-atomic="true" data-delay="5000">
+    <div class="toast-header">
+        <img src="../../../app-assets/images/ico/favicon-32.png" class="rounded mr-2" alt="Toast image">
+        <strong class="mr-auto">Stack Admin</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        Hello, world! This is a toast message.
+    </div>
+</div> --}}
 
 @push('script')
 <script>

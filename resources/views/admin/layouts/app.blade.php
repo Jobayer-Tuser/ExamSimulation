@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Exam Simulation System') }}</title>
-
     @include('admin.inc._styles')
     @stack('css')
+
 </head>
 <body class="vertical-layout vertical-menu 2-columns  fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
 
+    <x:notify-messages />
+
     @include('admin.inc._header')
     @include('admin.inc._navbar ')
-
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -50,6 +51,8 @@
     <div class="drag-target"></div>
 
     @include('admin.inc._footer')
+
+    @notifyJs
 
 </body>
 </html>
