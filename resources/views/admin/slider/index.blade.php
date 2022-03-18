@@ -31,11 +31,11 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th>Sl No.</th>
+                                    <th class="min">Sl No.</th>
                                     <th>Group name</th>
                                     <th>Title</th>
                                     <th>Sequence</th>
-                                    <th>Status</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -29,13 +29,13 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th>Sl no.</th>
+                                    <th class="min">Sl no.</th>
                                     <th>Coupon code</th>
                                     <th>Discount amount</th>
                                     <th>Total useable</th>
                                     <th>Discount start</th>
                                     <th>Discount end</th>
-                                    <th>Action</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

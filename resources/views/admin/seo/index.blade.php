@@ -28,12 +28,12 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th>Sl No.</th>
+                                    <th class="min">Sl No.</th>
                                     <th>Page ID</th>
                                     <th>Meta Title</th>
                                     <th>Meta Keywords</th>
                                     <th>Meta Description</th>
-                                    <th>Status</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,7 +58,7 @@
                                     <th>Meta Title</th>
                                     <th>Meta Keywords</th>
                                     <th>Meta Description</th>
-                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>

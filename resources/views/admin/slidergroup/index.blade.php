@@ -31,10 +31,10 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th>Sl No.</th>
+                                    <th class="min">Sl No.</th>
                                     <th>Slider type</th>
                                     <th>Group Name</th>
-                                    <th>Action</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
