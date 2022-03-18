@@ -41,18 +41,22 @@ Route::get('/home', function () {
     return view('admin.layouts.app');
 });
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::resource('admintype', AdminTypeController::class);
-Route::resource('admin', AdminController::class);
-Route::resource('slider', SliderController::class);
-Route::resource('slidergroup', SliderGroupController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('question', QuestionController::class);
-Route::resource('answer', AnswerController::class);
-Route::resource('test', TestController::class);
-Route::resource('coupon', CouponController::class);
-Route::resource('page', PageController::class);
-Route::resource('seo', SeoController::class);
-Route::resource('order', OrderController::class);
-Route::resource('testquestion', TestQuestionController::class);
+Route::group(['middleware' => 'auth'], function(){
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('admintype', AdminTypeController::class);
+    Route::resource('admin', AdminController::class);
+    Route::resource('slider', SliderController::class);
+    Route::resource('slidergroup', SliderGroupController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('question', QuestionController::class);
+    Route::resource('answer', AnswerController::class);
+    Route::resource('test', TestController::class);
+    Route::resource('coupon', CouponController::class);
+    Route::resource('page', PageController::class);
+    Route::resource('seo', SeoController::class);
+    Route::resource('order', OrderController::class);
+    Route::resource('testquestion', TestQuestionController::class);
+
+});
 

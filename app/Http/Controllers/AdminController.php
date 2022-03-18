@@ -53,8 +53,14 @@ class AdminController extends Controller
     // public function store(Request $request)
     public function store(StoreAdminRequest $request)
     {
-        // return $request;
-        if ( Admin::create($request->validated()) ) {
+        $admin = Admin::create([
+            'name'          => request('name'),
+            'email'         => request('email'),
+            'admin_type_id' => request('admin_type_id'),
+            'password'      => bcrypt(request('password')),
+            'status'        => request('status'),
+        ]);
+        if ( $admin ) {
             return redirect(route('admin.index'));
         }
 
