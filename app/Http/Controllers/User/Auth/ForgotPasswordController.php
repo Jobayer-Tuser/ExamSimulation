@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
@@ -19,4 +19,19 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+     /**
+     * Override view path from default path
+     *
+     * @return view
+     */
+    public function showLinkRequestForm()
+    {
+        return view('user.auth.passwords.email');
+    }
 }

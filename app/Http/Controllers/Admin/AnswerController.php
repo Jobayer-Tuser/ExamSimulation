@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StorePageRequest;
-use App\Http\Requests\UpdatePageRequest;
-use App\Models\Page;
+use App\Http\Requests\StoreAnswerRequest;
+use App\Http\Requests\UpdateAnswerRequest;
+use App\Models\Answer;
+use App\Http\Controllers\Controller;
 
-class PageController extends Controller
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.page.index');
+        return view('admin.answer.index');
     }
 
     /**
@@ -31,10 +32,10 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePageRequest  $request
+     * @param  \App\Http\Requests\StoreAnswerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePageRequest $request)
+    public function store(StoreAnswerRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page)
+    public function show(Answer $answer)
     {
         //
     }
@@ -53,10 +54,10 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Page $page)
+    public function edit(Answer $answer)
     {
         //
     }
@@ -64,11 +65,11 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePageRequest  $request
-     * @param  \App\Models\Page  $page
+     * @param  \App\Http\Requests\UpdateAnswerRequest  $request
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePageRequest $request, Page $page)
+    public function update(UpdateAnswerRequest $request, Answer $answer)
     {
         //
     }
@@ -76,10 +77,10 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy(Answer $answer)
     {
         //
     }

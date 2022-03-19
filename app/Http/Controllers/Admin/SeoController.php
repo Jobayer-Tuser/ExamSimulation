@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreSliderRequest;
-use App\Http\Requests\UpdateSliderRequest;
-use App\Models\Slider;
+use App\Models\Seo;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class SliderController extends Controller
+class SeoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return view('admin.slider.index');
+        return view('admin.seo.index');
     }
 
     /**
@@ -25,16 +25,16 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('admin.slider.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSliderRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSliderRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class SliderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Slider  $slider
+     * @param  \App\Models\Seo  $seo
      * @return \Illuminate\Http\Response
      */
-    public function show(Slider $slider)
+    public function show(Seo $seo)
     {
         //
     }
@@ -53,10 +53,10 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Slider  $slider
+     * @param  \App\Models\Seo  $seo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slider $slider)
+    public function edit(Seo $seo)
     {
         //
     }
@@ -64,11 +64,11 @@ class SliderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSliderRequest  $request
-     * @param  \App\Models\Slider  $slider
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Seo  $seo
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSliderRequest $request, Slider $slider)
+    public function update(Request $request, Seo $seo)
     {
         //
     }
@@ -76,10 +76,10 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Slider  $slider
+     * @param  \App\Models\Seo  $seo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy(Seo $seo)
     {
         //
     }

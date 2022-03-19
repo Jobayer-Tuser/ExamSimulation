@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreQuestionRequest;
-use App\Http\Requests\UpdateQuestionRequest;
-use App\Models\Question;
+use App\Http\Requests\StorePageRequest;
+use App\Http\Requests\UpdatePageRequest;
+use App\Models\Page;
+use App\Http\Controllers\Controller;
 
-class QuestionController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('admin.question.index');
+        return view('admin.page.index');
     }
 
     /**
@@ -31,10 +32,10 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreQuestionRequest  $request
+     * @param  \App\Http\Requests\StorePageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQuestionRequest $request)
+    public function store(StorePageRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(Page $page)
     {
         //
     }
@@ -53,10 +54,10 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Page $page)
     {
         //
     }
@@ -64,11 +65,11 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateQuestionRequest  $request
-     * @param  \App\Models\Question  $question
+     * @param  \App\Http\Requests\UpdatePageRequest  $request
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionRequest $request, Question $question)
+    public function update(UpdatePageRequest $request, Page $page)
     {
         //
     }
@@ -76,10 +77,10 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(Page $page)
     {
         //
     }

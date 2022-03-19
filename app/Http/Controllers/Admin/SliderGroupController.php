@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreTestQuestionRequest;
-use App\Http\Requests\UpdateTestQuestionRequest;
-use App\Models\TestQuestion;
+use App\Http\Requests\StoreSliderGroupRequest;
+use App\Http\Requests\UpdateSliderGroupRequest;
+use App\Models\SliderGroup;
+use App\Http\Controllers\Controller;
 
-class TestQuestionController extends Controller
+class SliderGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class TestQuestionController extends Controller
      */
     public function index()
     {
-        return view('admin.test.question');
+        return view('admin.slidergroup.index');
     }
 
     /**
@@ -31,10 +32,10 @@ class TestQuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTestQuestionRequest  $request
+     * @param  \App\Http\Requests\StoreSliderGroupRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTestQuestionRequest $request)
+    public function store(StoreSliderGroupRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class TestQuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TestQuestion  $testQuestion
+     * @param  \App\Models\SliderGroup  $sliderGroup
      * @return \Illuminate\Http\Response
      */
-    public function show(TestQuestion $testQuestion)
+    public function show(SliderGroup $sliderGroup)
     {
         //
     }
@@ -53,10 +54,10 @@ class TestQuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TestQuestion  $testQuestion
+     * @param  \App\Models\SliderGroup  $sliderGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(TestQuestion $testQuestion)
+    public function edit(SliderGroup $sliderGroup)
     {
         //
     }
@@ -64,11 +65,11 @@ class TestQuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTestQuestionRequest  $request
-     * @param  \App\Models\TestQuestion  $testQuestion
+     * @param  \App\Http\Requests\UpdateSliderGroupRequest  $request
+     * @param  \App\Models\SliderGroup  $sliderGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTestQuestionRequest $request, TestQuestion $testQuestion)
+    public function update(UpdateSliderGroupRequest $request, SliderGroup $sliderGroup)
     {
         //
     }
@@ -76,10 +77,10 @@ class TestQuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TestQuestion  $testQuestion
+     * @param  \App\Models\SliderGroup  $sliderGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TestQuestion $testQuestion)
+    public function destroy(SliderGroup $sliderGroup)
     {
         //
     }

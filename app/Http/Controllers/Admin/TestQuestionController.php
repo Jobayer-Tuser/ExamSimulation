@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreTestRequest;
-use App\Http\Requests\UpdateTestRequest;
-use App\Models\Test;
+use App\Http\Requests\StoreTestQuestionRequest;
+use App\Http\Requests\UpdateTestQuestionRequest;
+use App\Models\TestQuestion;
+use App\Http\Controllers\Controller;
 
-class TestController extends Controller
+class TestQuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        return view('admin.test.index');
+        return view('admin.test.question');
     }
 
     /**
@@ -31,10 +32,10 @@ class TestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTestRequest  $request
+     * @param  \App\Http\Requests\StoreTestQuestionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTestRequest $request)
+    public function store(StoreTestQuestionRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class TestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Test  $test
+     * @param  \App\Models\TestQuestion  $testQuestion
      * @return \Illuminate\Http\Response
      */
-    public function show(Test $test)
+    public function show(TestQuestion $testQuestion)
     {
         //
     }
@@ -53,10 +54,10 @@ class TestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Test  $test
+     * @param  \App\Models\TestQuestion  $testQuestion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Test $test)
+    public function edit(TestQuestion $testQuestion)
     {
         //
     }
@@ -64,11 +65,11 @@ class TestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTestRequest  $request
-     * @param  \App\Models\Test  $test
+     * @param  \App\Http\Requests\UpdateTestQuestionRequest  $request
+     * @param  \App\Models\TestQuestion  $testQuestion
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTestRequest $request, Test $test)
+    public function update(UpdateTestQuestionRequest $request, TestQuestion $testQuestion)
     {
         //
     }
@@ -76,10 +77,10 @@ class TestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Test  $test
+     * @param  \App\Models\TestQuestion  $testQuestion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Test $test)
+    public function destroy(TestQuestion $testQuestion)
     {
         //
     }

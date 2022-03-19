@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use App\Models\AdminType;
 use App\Repositories\AdminRepository;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -57,7 +57,7 @@ class AdminController extends Controller
             'name'          => request('name'),
             'email'         => request('email'),
             'admin_type_id' => request('admin_type_id'),
-            'password'      => bcrypt(request('password')),
+            'account_password'      => bcrypt(request('password')),
             'status'        => request('status'),
         ]);
         if ( $admin ) {

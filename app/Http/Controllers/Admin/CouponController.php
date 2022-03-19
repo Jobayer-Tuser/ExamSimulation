@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreAnswerRequest;
-use App\Http\Requests\UpdateAnswerRequest;
-use App\Models\Answer;
-
-class AnswerController extends Controller
+use App\Http\Requests\StoreCouponRequest;
+use App\Http\Requests\UpdateCouponRequest;
+use App\Models\Coupon;
+use App\Http\Controllers\Controller;
+class CouponController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        return view('admin.answer.index');
+        return view('admin.coupon.index');
     }
 
     /**
@@ -31,10 +31,10 @@ class AnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAnswerRequest  $request
+     * @param  \App\Http\Requests\StoreCouponRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAnswerRequest $request)
+    public function store(StoreCouponRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class AnswerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function show(Answer $answer)
+    public function show(Coupon $coupon)
     {
         //
     }
@@ -53,10 +53,10 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(Coupon $coupon)
     {
         //
     }
@@ -64,11 +64,11 @@ class AnswerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAnswerRequest  $request
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Http\Requests\UpdateCouponRequest  $request
+     * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAnswerRequest $request, Answer $answer)
+    public function update(UpdateCouponRequest $request, Coupon $coupon)
     {
         //
     }
@@ -76,10 +76,10 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy(Coupon $coupon)
     {
         //
     }
