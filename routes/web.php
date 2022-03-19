@@ -1,20 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdminTypeController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\SliderGroupController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\SeoController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\TestQuestionController;
+use App\Http\Controllers\User\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,28 +18,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Authentication Routes...
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login_page');
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Registration Routes...
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register_page');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
+Route::get('register/activate/{token}', [RegisterController::class, 'confirm'])->name('email_confirm');
 
+// Password Reset Routes...
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
+Route::group(['middleware' => 'auth'], function(){
 
-Route::get('/home', function () {
-    return view('admin.layouts.app');
 });
-
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::resource('admintype', AdminTypeController::class);
-Route::resource('admin', AdminController::class);
-Route::resource('slider', SliderController::class);
-Route::resource('slidergroup', SliderGroupController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('question', QuestionController::class);
-Route::resource('answer', AnswerController::class);
-Route::resource('test', TestController::class);
-Route::resource('coupon', CouponController::class);
-Route::resource('page', PageController::class);
-Route::resource('seo', SeoController::class);
-Route::resource('order', OrderController::class);
-Route::resource('testquestion', TestQuestionController::class);
-

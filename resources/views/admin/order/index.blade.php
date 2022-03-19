@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Admin type list</h4>
+                    <h4 class="card-title">Order List</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -27,14 +27,14 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th>Sl No.</th>
+                                    <th class="min">Sl No.</th>
                                     <th>Order date</th>
                                     <th>Customer Id</th>
                                     <th>Item Id</th>
                                     <th>Item Quantity</th>
                                     <th>Amount</th>
                                     <th>OrderStatus</th>
-                                    <th>Action</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

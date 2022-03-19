@@ -18,8 +18,10 @@ class CreateAdminsTable extends Migration
             $table->string('name', 128);
             $table->string('email', 64)->unique();
             $table->foreignId('admin_type_id')->constrained('admin_types')->cascadeOnUpdate()->restrictOnDelete();
-            $table->string('password', 64);
-            $table->enum('status', [0, 1])->comment('0 = active, 1 = active');
+            $table->string('account_password', 64);
+            $table->enum('status', [0, 1])->comment('0 = Inactive, 1 = active');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
