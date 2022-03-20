@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'SEO')
-@section('breadcrumb', 'SEO')
+@section('title', 'SEO page list')
+@section('breadcrumb', 'SEO page list')
 
 @section('button')
     <button data-toggle="modal" data-target="#seoCreate" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Admin type list</h4>
+                    <h4 class="card-title">Seo page list</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
