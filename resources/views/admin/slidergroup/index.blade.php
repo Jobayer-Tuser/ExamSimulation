@@ -1,7 +1,5 @@
 @extends('admin.layouts.app')
-
 @section('title', ' Slider Group')
-
 @section('breadcrumb', 'Slider group')
 
 @section('button')

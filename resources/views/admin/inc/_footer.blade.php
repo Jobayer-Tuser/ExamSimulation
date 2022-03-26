@@ -4,7 +4,7 @@
         <span class="float-md-left d-block d-md-inline-block">Copyright &copy; {{ date('Y') }}
         </span>
         <span class="float-md-right d-none d-lg-block">
-            Design & Developed by SuperbNexus <i class="feather icon-heart pink"></i>
+            Design & Developed by SuperbNexus with <i class="feather icon-heart pink"></i>
         </span>
     </p>
 </footer>
