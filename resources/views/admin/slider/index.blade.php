@@ -11,7 +11,7 @@
 @section('content')
 
 <section id="configuration">
-    <div class="row">
+    <div class="row mt-1">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">

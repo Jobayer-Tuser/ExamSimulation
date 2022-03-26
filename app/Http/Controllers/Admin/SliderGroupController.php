@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreSliderGroupRequest;
-use App\Http\Requests\UpdateSliderGroupRequest;
 use App\Models\SliderGroup;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class SliderGroupController extends Controller
 {
@@ -16,7 +15,8 @@ class SliderGroupController extends Controller
      */
     public function index()
     {
-        return view('admin.slidergroup.index');
+        $data['sliderGroups'] = SliderGroup::select('id', 'slider_type', 'name')->get();
+        return view('admin.slidergroup.index', $data);
     }
 
     /**
@@ -35,9 +35,20 @@ class SliderGroupController extends Controller
      * @param  \App\Http\Requests\StoreSliderGroupRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSliderGroupRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'slider_type' => 'required',
+            'name' => 'required',
+        ]);
+
+        if ( SliderGroup::create($validateData) ) {
+            notify()->success('Slider group type created successfully!');
+            return redirect(route('slidergroup.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
+            return redirect(route('slidergroup.index'));
+        }
     }
 
     /**
@@ -69,9 +80,22 @@ class SliderGroupController extends Controller
      * @param  \App\Models\SliderGroup  $sliderGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSliderGroupRequest $request, SliderGroup $sliderGroup)
+    public function update(Request $request, SliderGroup $slidergroup)
     {
-        //
+        $validateData = $request->validate([
+            'slider_type' => 'required',
+            'name' => 'required',
+        ]);
+        $slidergroup->slider_type = request('slider_type');
+        $slidergroup->name = request('name');
+
+        if ( $slidergroup->save() ) {
+            notify()->success('Slider group type updated successfully!');
+            return redirect(route('slidergroup.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
+            return redirect(route('slidergroup.index'));
+        }
     }
 
     /**
@@ -80,8 +104,11 @@ class SliderGroupController extends Controller
      * @param  \App\Models\SliderGroup  $sliderGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SliderGroup $sliderGroup)
+    public function destroy(SliderGroup $slidergroup)
     {
-        //
+        if ($slidergroup->delete()) {
+            notify()->success('Slider group type delete successfully!');
+            return redirect(route('slidergroup.index'));
+        }
     }
 }
