@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSliderRequest;
 use App\Http\Requests\UpdateSliderRequest;
 use App\Models\Slider;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
@@ -35,9 +36,9 @@ class SliderController extends Controller
      * @param  \App\Http\Requests\StoreSliderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSliderRequest $request)
+    public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
