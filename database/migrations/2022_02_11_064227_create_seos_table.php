@@ -19,6 +19,7 @@ class CreateSeosTable extends Migration
             $table->text('meta_title');
             $table->string('meta_keyword');
             $table->text('meta_description');
+            $table->timestamps();
         });
     }
 
