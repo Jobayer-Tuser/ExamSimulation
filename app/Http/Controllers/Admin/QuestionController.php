@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreQuestionRequest;
-use App\Http\Requests\UpdateQuestionRequest;
+use App\Models\Category;
 use App\Models\Question;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Requests\UpdateQuestionRequest;
 
 class QuestionController extends Controller
 {
@@ -16,7 +17,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('admin.question.index');
+        $data['categories'] = Category::with('parent')->select('id', 'name', 'status', 'parent_category_id')->get();
+        return view('admin.question.index', $data);
     }
 
     /**
