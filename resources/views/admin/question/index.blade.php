@@ -68,7 +68,8 @@
 <!-- Careate Question Modal -->
 <div class="modal fade text-left" id="createQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form action="{{ route('question.store') }}" method="POST">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Create Question </h4>
@@ -81,24 +82,27 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="parent_category">Subcategory Category</label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
+                                <select name="parent_category_id" class="custom-select block" id="parent_category">
                                     <option selected="">Select Category</option>
-                                    <option value="BSC Exam">BSC Exam </option>
-                                    <option value="PSC Exam"> PSC Exam</option>
+                                    @if ( !empty($categories))
+                                        @foreach ($categories as $category )
+                                            <option value="{{ $category->id }}"> {{ $category->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="question_details">Question Details</label>
-                                <textarea name="question_details" type="text" class="form-control" id="question_details">Who is the prime miniter of bangldesh?</textarea>
+                                <textarea name="details" type="text" class="form-control" id="question_details"></textarea>
                             </fieldset>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
                 </div>
             </div>
         </form>
@@ -108,7 +112,9 @@
 <!-- Edit Question Modal -->
 <div class="modal fade text-left" id="editQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form method="POST" class="editQuestionForm">
+            @csrf
+            @method('PATCH')
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Edit Question </h4>
@@ -121,24 +127,27 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="parent_category">Parent Category</label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
+                                <select name="parent_category_id" class="custom-select block" id="parent_category">
                                     <option selected="">Select Category</option>
-                                    <option value="Full width">BSC Exam </option>
-                                    <option value="Square"> PSC Exam</option>
+                                    @if ( !empty($categories))
+                                        @foreach ($categories as $category )
+                                            <option value="{{ $category->id }}"> {{ $category->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="question_details">Question Details</label>
-                                <textarea name="question_details" type="text" class="form-control" id="question_details">Who is the prime miniter of bangldesh?</textarea>
+                                <textarea name="details" type="text" class="form-control" id="question_details">Who is the prime miniter of bangldesh?</textarea>
                             </fieldset>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Update</button>
+                    <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>
             </div>
         </form>

@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'SEO')
-@section('breadcrumb', 'SEO')
+@section('title', 'SEO page list')
+@section('breadcrumb', 'SEO page list')
 
 @section('button')
     <button data-toggle="modal" data-target="#seoCreate" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Admin type list</h4>
+                    <h4 class="card-title">Seo page list</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -37,18 +37,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <tr>
-                                    <td>1</td>
-                                    <td>12</td>
-                                    <td> Hello title will be here </td>
-                                    <td> title, course, description </td>
-                                    <td> Here will come meta description </td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#seoEdit" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                        <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                    </td>
-                                </tr>
+                                @php
+                                    $n = 1;
+                                @endphp
+                                @if ( !empty($seos) )
+                                    @foreach ($seos as $seo)
+                                        <tr>
+                                            <td>{{ $n++ }}</td>
+                                            <td> {{ $seo->page_id }}</td>
+                                            <td> {{ $seo->meta_title }} </td>
+                                            <td> {{ $seo->meta_keyword }} </td>
+                                            <td> {{ $seo->meta_description }} </td>
+                                            <td>
+                                                <button
+                                                    data-eurl="{{ route('seo.update', $seo->id) }}"
+                                                    data-id="{{ $seo->page_id }}"
+                                                    data-title="{{ $seo->meta_title }}"
+                                                    data-keyword="{{ $seo->meta_keyword }}"
+                                                    data-description="{{ $seo->meta_description }}"
+                                                    data-toggle="modal"
+                                                    data-target="#seoEdit"
+                                                    type="button" class="btn btn-warning btn-sm editSEOButton">
+                                                    <i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit
+                                                </button>
+                                                <form class="d-flex" method="POST" action="{{ route('seo.destroy', $seo->id) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
 
                             </tbody>
                             <tfoot>
@@ -72,7 +92,8 @@
 <!-- Create Page Modal -->
 <div class="modal fade text-left" id="seoCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form action="{{ route('seo.store') }}" method="POST">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="create-page"> SEO </h4>
@@ -85,10 +106,13 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="page-id"> Pages ID</label>
-                                <select name="pages_id" class="custom-select block" id="pages_id">
-                                    <option selected=""> Select Type </option>
-                                    <option value="1"> Home Page </option>
-                                    <option value="0"> About Page </option>
+                                <select name="page_id" class="custom-select block" id="pages_id">
+                                    <option value="" selected > Select Type </option>
+                                    @if ( !empty($pages) )
+                                        @foreach ($pages as $page)
+                                            <option value="{{ $page->id }}"> {{ $page->title }} </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
@@ -116,7 +140,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
                 </div>
             </div>
         </form>
@@ -126,7 +150,9 @@
 <!-- Edit SEO Modal -->
 <div class="modal fade text-left" id="seoEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form action="" method="POST" class="editSEOForm" >
+            @csrf
+            @method('PATCH')
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="create-page"> SEO </h4>
@@ -139,10 +165,13 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="page-id"> Pages ID</label>
-                                <select name="pages_id" class="custom-select block" id="pages_id">
-                                    <option selected=""> Select Type </option>
-                                    <option value="1"> Home Page </option>
-                                    <option value="0"> About Page </option>
+                                <select name="page_id" class="custom-select block" id="pages_id">
+                                    <option value="" selected=""> Select Type </option>
+                                    @if ( !empty($pages) )
+                                        @foreach ($pages as $page)
+                                            <option value="{{ $page->id }}"> {{ $page->title }} </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
@@ -170,11 +199,32 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+@push('script')
+    <script>
+        $(document).ready(function(){
+            //edit admin type action
+            $(document).on('click', '.editSEOButton', function(e){
+                let pageEditUrl     = $(this).data('eurl');
+                let pageId          = $(this).data('id');
+                let pageTitle       = $(this).data('title');
+                let pageKeyword     = $(this).data('keyword');
+                let pageDescription = $(this).data('description');
+
+                $('[name="meta_title"]').val(pageTitle);
+                $('[name="meta_keyword"]').val(pageKeyword);
+                $('[name="meta_description"]').val(pageDescription);
+                $('[name="page_id"]').val(pageId).change();
+                $(".editSEOForm").attr('action', pageEditUrl);
+            });
+        });
+    </script>
+@endpush
 @endsection
 

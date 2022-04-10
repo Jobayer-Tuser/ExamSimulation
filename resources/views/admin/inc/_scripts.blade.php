@@ -1,9 +1,16 @@
 
 <!-- BEGIN: Main Theme JS  -->
 <script src="{{ asset('assets/app-assets/vendors/js/vendors.min.js') }}"></script>
+
+<!-- BEGIN: SLider Page Vendor JS-->
+{{-- <script src="{{asset('assets/app-assets/vendors/js/extensions/dropzone.min.js')}}"></script> --}}
+{{-- <script src="{{asset('assets/app-assets/vendors/js/ui/prism.min.js')}}"></script> --}}
+
 <script src="{{ asset('assets/app-assets/js/core/app-menu.js') }}"></script>
 <script src="{{ asset('assets/app-assets/js/core/app.js') }}"></script>
+{{-- <script src="{{ asset('assets/app-assets/js/scripts/customizer.min.js') }}"></script> --}}
 
+{{-- <script src="{{ asset('assets/app-assets/js/scripts/extensions/dropzone.min.js') }}"></script> --}}
 <!-- BEGIN: Table Page Vendor JS-->
 <script src="{{ asset('assets/app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>
 <script src="{{ asset('assets/app-assets/js/scripts/tables/datatables/datatable-basic.js') }}"></script>
@@ -17,10 +24,6 @@
 <script src="{{ asset('assets/app-assets/js/scripts/pages/dashboard-ecommerce.js')}} "></script>
 <!-- END: Page JS-->
 
- <!-- BEGIN: SLider Page Vendor JS-->
- <script src="{{asset('assets/app-assets/vendors/js/extensions/dropzone.min.js')}}"></script>
- <script src="{{asset('assets/app-assets/vendors/js/ui/prism.min.js')}}"></script>
- <script src="{{asset('assets/app-assets/js/scripts/extensions/dropzone.js')}}"></script>
 
  <!-- BEGIN: Page Vendor JS-->
  <script src="{{ asset('assets/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>

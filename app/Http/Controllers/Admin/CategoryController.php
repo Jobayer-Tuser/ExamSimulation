@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        $data['categories'] = Category::with('parent')->select('id', 'name', 'status', 'parent_category_id')->get();
+        // return $data;
+        return view('admin.category.index', $data);
     }
 
     /**
@@ -35,9 +38,24 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(Request $request)
     {
-        //
+        // return $request;
+        $validateData = $request->validate([
+            'parent_category_id' => 'sometimes',
+            'name' => 'required|string',
+            'status' => 'required',
+        ]);
+
+        // return $validateData;
+
+        if (Category::create($validateData)) {
+            notify()->success('Category created successfully!');
+            return redirect(route('category.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
+            return redirect(route('category.index'));
+        }
     }
 
     /**
@@ -69,9 +87,26 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
-        //
+
+        $validateData = $request->validate([
+            'parent_category_id' => 'sometimes',
+            'name' => 'required|string',
+            'status' => 'required',
+        ]);
+
+        $category->parent_category_id = request('parent_category_id');
+        $category->name = request('name');
+        $category->status = request('status');
+
+        if ($category->save()) {
+            notify()->success('Category updated successfully!');
+            return redirect(route('category.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
+            return redirect(route('category.index'));
+        }
     }
 
     /**

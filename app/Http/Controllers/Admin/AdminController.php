@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin;
-use App\Models\AdminType;
 use App\Repositories\AdminRepository;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use Exception;
 
 class AdminController extends Controller
 {
@@ -25,12 +26,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $data['admintypes'] = AdminType::alltype()->get();
-        // $data['admins'] = Admin::with(['admintype' => function($query){
-        //                         $query->select('name');
-        //                     }])->allAdmin()->get();
-        $data['admins'] =  Admin::allAdmin()->get();
-        // dd($data['admins']->toArray());
+        $data = $this->adminRepo->getAllAdmin();
         return view('admin.admins.index', $data);
     }
 
@@ -53,14 +49,14 @@ class AdminController extends Controller
     // public function store(Request $request)
     public function store(StoreAdminRequest $request)
     {
-        $admin = Admin::create([
-            'name'          => request('name'),
-            'email'         => request('email'),
-            'admin_type_id' => request('admin_type_id'),
-            'account_password'      => bcrypt(request('password')),
-            'status'        => request('status'),
-        ]);
-        if ( $admin ) {
+        // return $request;
+        $admin = $this->adminRepo->storeAdminData($request);
+
+        if ( $admin > 0 ) {
+            notify()->success('Admin created successfully!');
+            return redirect(route('admin.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
             return redirect(route('admin.index'));
         }
 
@@ -95,9 +91,17 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, Admin $admin)
     public function update(UpdateAdminRequest $request, Admin $admin)
     {
-        //
+        $admin = $this->adminRepo->updateAdminData($request, $admin);
+        if ( $admin > 0 ) {
+            notify()->success('Admin updated successfully!');
+            return redirect(route('admin.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
+            return redirect(route('admin.index'));
+        }
     }
 
     /**
@@ -108,6 +112,13 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        //
+        $admin = $this->adminRepo->deleteAdmin($admin);
+        if ( $admin > 0 ) {
+            notify()->success('Admin deleted successfully!');
+            return redirect(route('admin.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
+            return redirect(route('admin.index'));
+        }
     }
 }

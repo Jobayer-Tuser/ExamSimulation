@@ -12,6 +12,7 @@ class AdminTypeController extends Controller
     public function index()
     {
         $data['admin'] = AdminType::all();
+        // return $data;
         return view('admin.admintype.index', $data);
     }
 
@@ -32,18 +33,21 @@ class AdminTypeController extends Controller
 
     public function update(Request $request, AdminType $admintype)
     {
-        $validateData = $request->validate([ 'name' => 'required|string|between:3,50' ]);
+        $validateData = $request->validate([ 'name' => 'required|string' ]);
 
         try {
 
-            $admintype->name        = $validateData;
+            $admintype->name        = $validateData['name'];
             $admintype->updated_at  = now()->toDateTimeString();
             $admintype->save();
 
             notify()->success('Admin type updated successfully!');
             return redirect(route('admintype.index'));
         } catch (Exception $exception) {
-            return $exception->getMessage();
+
+            notify()->warning('Something went!');
+            return redirect(route('admintype.index'));
+            // return $exception->getMessage();
         }
 
     }

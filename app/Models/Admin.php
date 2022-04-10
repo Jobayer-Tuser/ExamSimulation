@@ -74,7 +74,7 @@ class Admin extends Authenticatable
      */
     public function scopeAllAdmin($query) : object
     {
-        return $query->select('name', 'email', 'status');
+        return $query->select('id', 'name', 'email', 'status', 'admin_type_id');
     }
 
     /**

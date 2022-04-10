@@ -11,7 +11,7 @@
 @section('content')
 
 <section id="configuration">
-    <div class="row">
+    <div class="row mt-1">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -34,21 +34,36 @@
                                     <th class="min">Sl No.</th>
                                     <th>Parent Category</th>
                                     <th>Category Name</th>
-                                    <th class="min">Status</th>
+                                    <th>Status</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <tr>
-                                    <td>1</td>
-                                    <td> Men </td>
-                                    <td> Jeans </td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#editCategory" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                        <button data-toggle="modal" data-target="#deleteCategory" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                    </td>
-                                </tr>
-
+                                @php
+                                    $n = 1;
+                                @endphp
+                                @if ( !empty($categories))
+                                    @foreach ($categories as $category)
+                                        <tr>
+                                            <td> {{ $n++ }}</td>
+                                            <td> {{ !empty($category->parent) ? $category->parent->name : null }} </td>
+                                            <td> {{ $category->name }} </td>
+                                            <td> <div class="badge badge-glow badge-pill {{ ($category->status == 'Active' ? 'badge-success' : 'badge-secondary') }}" >{{  $category->status  }} </div></td>
+                                            <td>
+                                                <button data-toggle="modal"
+                                                    data-url="{{ route('category.update', $category->id) }}"
+                                                    data-parentid="{{ $category->parent_category_id }}"
+                                                    data-name="{{  $category->name  }}"
+                                                    data-status="{{ $category->status }}"
+                                                    data-target="#editCategory"
+                                                    type="button" class="btn btn-warning btn-sm editCategoryBtn">
+                                                    <i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit
+                                                </button>
+                                                <button data-toggle="modal" data-target="#deleteCategory" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -56,6 +71,7 @@
                                     <th>Parent Category</th>
                                     <th>Category Name</th>
                                     <th>Status</th>
+                                    <th class="min">Action</th> 
                                 </tr>
                             </tfoot>
                         </table>
@@ -70,7 +86,8 @@
 <!-- Modal -->
 <div class="modal fade text-left" id="createCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form action="{{ route('category.store') }}" method="POST">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Create Category </h4>
@@ -83,23 +100,26 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="parent_category">Parent Category</label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
-                                    <option selected="">Select Category</option>
-                                    <option value="Full width">BSC Exam </option>
-                                    <option value="Square"> PSC Exam</option>
+                                <select name="parent_category_id" class="custom-select block" id="parent_category">
+                                    <option value="" selected="">Select Category</option>
+                                    @if (!empty($categories))
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
-                                <label for="image_title">Category Name</label>
-                                <input name="category_name" type="text" class="form-control" id="category_name">
+                                <label for="category_name">Category Name</label>
+                                <input name="name" type="text" class="form-control" id="category_name" />
                             </fieldset>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="category_status">Category Status</label>
-                                <select name="category_status" class="custom-select block" id="category_status">
+                                <select name="status" class="custom-select block" id="category_status" />
                                     <option selected="">Select Status</option>
                                     <option value="1"> Active </option>
                                     <option value="0"> Inactive</option>
@@ -110,7 +130,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
                 </div>
             </div>
         </form>
@@ -120,7 +140,9 @@
 <!-- Modal -->
 <div class="modal fade text-left" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form action="" method="POST" class="categoryEditForm">
+            @csrf
+            @method('PATCH')
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Edit Category </h4>
@@ -133,25 +155,28 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="parent_category">Parent Category</label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
-                                    <option value="">Select Category</option>
-                                    <option selected="" value="BSC Exam">BSC Exam </option>
-                                    <option value=""> PSC Exam</option>
+                                <select name="parent_category_id" class="custom-select block" id="parent_category">
+                                    <option value="" selected="">Select Category</option>
+                                    @if (!empty($categories))
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="category_name">Category Name</label>
-                                <input name="category_name" value="Bangla MCQ Question" type="text" class="form-control" id="category_name">
+                                <input name="name" type="text" class="form-control" id="category_name" required/>
                             </fieldset>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="category_status">Category Status</label>
-                                <select name="category_status" class="custom-select block" id="category_status">
-                                    <option ">Select Status</option>
-                                    <option selected="" value="1"> Active </option>
+                                <select name="status" class="custom-select block" id="category_status" required >
+                                    <option value="" selected="">Select Status</option>
+                                    <option value="1"> Active </option>
                                     <option value="0"> Inactive</option>
                                 </select>
                             </fieldset>
@@ -160,11 +185,32 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+@push('script')
+    <script>
+        $(document).ready(function(){
+            //edit admin type action
+            $(document).on('click', '.editCategoryBtn', function(e){
+                let pageEditUrl     = $(this).data('url');
+                let parentCatId     = $(this).data('parentid');
+                let pageTitle       = $(this).data('name');
+                let pageStatus      = $(this).data('status');
+                console.log(parentCatId);
+
+
+                $('[name="parent_category_id"]').val(parentCatId).change();
+                $('[name="name"]').val(pageTitle);
+                ( pageStatus == 'Active' ? $('[name="status"]').val(1).change() : $('[name="status"]').val(0).change() );
+                $(".categoryEditForm").attr('action', pageEditUrl);
+            });
+        });
+    </script>
+@endpush
 @endsection
 

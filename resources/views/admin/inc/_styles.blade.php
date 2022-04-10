@@ -16,6 +16,8 @@
 
 <!-- BEGIN: Vendor CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/vendors.min.css') }}">
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/vendors/css/ui/prism.min.css')}}"> --}}
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/vendors/css/file-uploaders/dropzone.min.css')}}"> --}}
 <!-- END: Vendor CSS-->
 
 <!-- BEGIN: Theme CSS-->
@@ -24,6 +26,11 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/colors.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/components.css') }}">
 <!-- END: Theme CSS-->
+
+<!-- BEGIN: Slider Vendor CSS-->
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css')}}"> --}}
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/colors/palette-gradient.css')}}"> --}}
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/plugins/file-uploaders/dropzone.css')}}"> --}}
 
  <!-- BEGIN: Table Page CSS-->
  <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
@@ -48,13 +55,6 @@
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}">
 <!-- END: Custom CSS-->
-
-<!-- BEGIN: Slider Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/vendors/css/ui/prism.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/vendors/css/file-uploaders/dropzone.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/core/colors/palette-gradient.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/css/plugins/file-uploaders/dropzone.css')}}">
 
 <!-- BEGIN: Quiz Question page CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/forms/toggle/switchery.min.css')}}">

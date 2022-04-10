@@ -31,25 +31,39 @@
                                     <th class="min">Sl No.</th>
                                     <th>Page Title</th>
                                     <th>Page url</th>
+                                    <th>Page Status</th>
                                     <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td> Home Page </td>
-                                    <td> <a href="//exmasimulation.test/home" target="_blank" rel="noopener noreferrer">exmasimulation.test/home</a>   </td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#editPage" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                        <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                    </td>
-                                </tr>
+                                @php
+                                    $n = 1;
+                                @endphp
+                                @if ( !empty($pages) )
+                                    @foreach ($pages as $page)
+                                        <tr>
+                                            <td>{{ $n++ }}</td>
+                                            <td> {{ $page->title }} </td>
+                                            <td> <a href="{{ $page->url }}" target="_blank" rel="noopener noreferrer">{{ $page->url }}</a></td>
+                                            <td> <span class="badge {{ ($page->status == 'Active' ? 'badge-success' : 'badge-dark') }}">{{  $page->status  }} </span></td>
+                                            <td>
+                                                <button data-eurl="{{ route('page.update', $page->id) }}" data-status="{{ $page->status }}"  data-ttl="{{ $page->title }}" data-cont="{{ $page->content }}" data-purl="{{ $page->url }}" data-toggle="modal" data-target="#editPage" type="button" class="btn btn-warning btn-sm editPageButton"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                <form class="d-flex" method="POST" action="{{ route('page.destroy', $page->id) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th>Sl No.</th>
                                     <th>Page Title</th>
                                     <th>Page url</th>
+                                    <th>Page Status</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -64,7 +78,8 @@
 <!-- Create Page Modal -->
 <div class="modal fade text-left" id="createPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form action="{{ route('page.store') }}" method="POST">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Create Page </h4>
@@ -77,21 +92,21 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="pages_url"> Pages URL</label>
-                                <input name="pages_url" type="text" class="form-control" id="pages_url"/>
+                                <input name="url" type="text" class="form-control" id="pages_url"/>
                             </fieldset>
                         </div>
 
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="page_title"> Page Title </label>
-                                <input name="page_title" type="text" class="form-control" id="page_title"/>
+                                <input name="title" type="text" class="form-control" id="page_title"/>
                             </fieldset>
                         </div>
 
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="page_status"> Page Status </label>
-                                <select name="page_status" class="custom-select block" id="page_status">
+                                <select name="status" class="custom-select block" id="page_status">
                                     <option selected="">Select Type</option>
                                     <option value="1"> Active </option>
                                     <option value="0">Inactive</option>
@@ -100,15 +115,15 @@
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
-                                <label for="page_content"> Page Content</label>
-                                <textarea name="page_content" type="text" class="form-control" id="page_content"> </textarea>
+                                <label for="content"> Page Content</label>
+                                <textarea name="content" type="text" class="form-control" id="page_content"> </textarea>
                             </fieldset>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
                 </div>
             </div>
         </form>
@@ -118,7 +133,9 @@
 <!-- Edit Page Modal -->
 <div class="modal fade text-left" id="editPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form method="POST" class="editPageForm" >
+            @csrf
+            @method('PATCH')
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Create Page </h4>
@@ -131,21 +148,21 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="pages_url"> Pages URL</label>
-                                <input name="pages_url" type="text" class="form-control" id="pages_url"/>
+                                <input name="url" type="text" class="form-control" id="page_url"/>
                             </fieldset>
                         </div>
 
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="page_title"> Page Title </label>
-                                <input name="page_title" type="text" class="form-control" id="page_title"/>
+                                <input name="title" type="text" class="form-control" id="page_title"/>
                             </fieldset>
                         </div>
 
                         <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                             <fieldset class="form-group">
                                 <label for="page_status"> Page Status </label>
-                                <select name="page_status" class="custom-select block" id="page_status">
+                                <select name="status" class="custom-select block" id="page_status">
                                     <option selected="">Select Type</option>
                                     <option value="1"> Active </option>
                                     <option value="0">Inactive</option>
@@ -156,19 +173,42 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="page_content"> Page Content</label>
-                                <textarea name="page_content" type="text" class="form-control" id="page_content"> </textarea>
+                                <textarea name="content" type="text" class="form-control" id="page_content"> </textarea>
                             </fieldset>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
+                    <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+@push('script')
+<script>
+    $(document).ready(function(){
+
+        //edit admin type action
+        $(document).on('click', '.editPageButton', function(e){
+            let pageTitle   = $(this).data('ttl');
+            let pageContent = $(this).data('cont');
+            let pageUrl     = $(this).data('purl');
+            let pageStatus  = $(this).data('status');
+            let pageEditUrl = $(this).data('eurl');
+
+            $('[name="title"]').val(pageTitle);
+            $('[name="content"]').val(pageContent);
+            $('[name="url"]').val(pageUrl);
+            ( pageStatus == 'Active' ? $('[name="status"]').val(1).change() : $('[name="status"]').val(0).change() );
+            $(".editPageForm").attr('action', pageEditUrl);
+        });
+    });
+</script>
+
+@endpush
 
 @endsection
 

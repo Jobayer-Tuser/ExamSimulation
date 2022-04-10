@@ -78,7 +78,7 @@
                                             <div class="col-sm-6 col-12 float-sm-left text-center text-sm-right">
 
                                                 @if (Route::has('password.request'))
-                                                    <a class="card-link" href="{{ route('password.request') }}">
+                                                    <a class="card-link" href="{{ route('admin.password.request') }}">
                                                         {{ __('Forgot Your Password?') }}
                                                     </a>
                                                 @endif
@@ -88,12 +88,12 @@
                                                 class="feather icon-unlock"></i> Login</button>
                                     </form>
                                 </div>
-                                <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1"><span>New to
+                                {{-- <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1"><span>New to
                                         Stack ?</span></p>
                                 <div class="card-body">
                                     <a href="register-with-bg-image.html" class="btn btn-outline-danger btn-block"><i
                                             class="feather icon-user"></i> Register</a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

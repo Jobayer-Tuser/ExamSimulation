@@ -45,8 +45,8 @@
                                                 <td> {{ ($each->created_at)->diffForHumans(); }} </td>
                                                 <td> {{ ($each->updated_at)->diffForHumans(); }} </td>
                                                 <td>
-                                                    <button data-url="{{ route('admintype.update', $each->id) }}" data-name="{{ $each->type_name }}" data-eid="{{ $each->id }}" data-toggle="modal" data-target="#editAdminType" type="button" class="btn  btn-warning btn-sm editAdminBtn"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                                    <button data-url="{{ route('admintype.destroy', $each->id) }}" data-name="{{ $each->type_name }}" data-did="{{ $each->id }}" data-toggle="modal" data-target="#deleteAdminType" type="button" class="btn btn-danger btn-sm deleteAdminBtn"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                                    <button data-url="{{ route('admintype.update', $each->id) }}" data-name="{{ $each->name }}" data-eid="{{ $each->id }}" data-toggle="modal" data-target="#editAdminType" type="button" class="btn  btn-warning btn-sm editAdminBtn"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                    <button data-url="{{ route('admintype.destroy', $each->id) }}" data-name="{{ $each->name }}" data-did="{{ $each->id }}" data-toggle="modal" data-target="#deleteAdminType" type="button" class="btn btn-danger btn-sm deleteAdminBtn"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -119,7 +119,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <fieldset class="form-group">
                                 <label for="admin_type">Admin Type</label>
-                                <input name="admin_type" value="" type="text" class="form-control adminType" id="admin_type">
+                                <input name="name" value="" type="text" class="form-control adminType" id="admin_type">
                             </fieldset>
                         </div>
                     </div>

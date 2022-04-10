@@ -50,8 +50,8 @@
                                             {{-- <td> {{ $admin->admintype->name }} </td> --}}
                                             <td> {{ $admin->status }} </td>
                                             <td>
-                                                <button data-toggle="modal" data-target="#editAdmin" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                                <button data-toggle="modal" data-target="#deleteAdmin" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                                <button  data-url="{{ route('admin.update', $admin->id) }}"  data-typeid="{{ $admin->admin_type_id }}" data-id="{{ $admin->id }}" data-name="{{ $admin->name }}" data-email="{{ $admin->email }}" data-status="{{ $admin->status }}" data-toggle="modal" data-target="#editAdmin" type="button" class="btn  btn-warning btn-sm editAdminBtn"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                <button  data-url="{{ route('admin.destroy', $admin->id) }}" data-name="{{ $admin->name }}" data-toggle="modal" data-target="#deleteAdmin" type="button" class="btn btn-danger btn-sm deleteAdminBtn"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -145,7 +145,9 @@
 <!-- Modal -->
 <div class="modal fade text-left" id="editAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form method="POST" class="editAdminForm">
+            @csrf
+            @method('PATCH')
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> Edit Admin </h4>
@@ -158,30 +160,34 @@
                         <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="basicInput">Name</label>
-                                <input name="admin_name" type="text" value="Nirjhor Anjum" class="form-control" id="admin_name">
+                                <input name="name" type="text" class="form-control adminName" id="admin_name" required />
                             </fieldset>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="basicInput">Email</label>
-                                <input name="admin_email" value="nirjhor.anjum@gmail.com" type="email" class="form-control" id="admin_email">
+                                <input name="email" type="email" class="form-control adminEmail" id="admin_email" required />
                             </fieldset>
                         </div>
+
                         <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                             <fieldset class="form-group">
                                 <label for="admintype">Select type</label>
-                                <select name="admin_type" class="custom-select block" id="admin_type">
-                                    <option selected="" value="Admin">Admin</option>
-                                    <option value="2">Super Admin</option>
-                                    <option value="3">Manager</option>
+                                <select name="admin_type_id" class="custom-select block adminType" id="admin_type" required >
+                                    <option value="" selected>Select</option>
+                                    @if (!empty($admintypes))
+                                        @foreach ($admintypes as $admintype )
+                                            <option value="{{ $admintype->id }}"> {{ $admintype->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                             <fieldset class="form-group">
-                                <label for="admintype">Select status</label>
-                                <select name="admin_type" class="custom-select block" id="admin_type">
-                                    <option  selected="" value="1"selected="">Active</option>
+                                <label for="adminstatus">Select status</label>
+                                <select name="status" class="custom-select block adminStatus" id="admin_status" required>
+                                    <option value="1">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
                             </fieldset>
@@ -189,8 +195,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-warning">Update</button>
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-outline-warning">Update</button>
                 </div>
             </div>
         </form>
@@ -200,7 +206,9 @@
 <!-- Modal -->
 <div class="modal fade text-left" id="deleteAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-default" role="document">
-        <form action="">
+        <form class="deleteAdminForm" method="POST">
+            @csrf
+            @method('DELETE')
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17"> <strong> Delete Admin </strong>  </h4>
@@ -209,7 +217,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5> Are you sure want to delete <strong> Nirjhor Anjum </strong>!</h5>
+                    <h5> Are you sure want to delete <strong class="adminText"> </strong> ! </h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-success" data-dismiss="modal">Close</button>
@@ -219,6 +227,39 @@
         </form>
     </div>
 </div>
+
+@push('script')
+<script>
+    $(document).ready(function(){
+
+        //edit admin type action
+        $(document).on('click', '.editAdminBtn', function(e){
+            let name    = $(this).data('name');
+            let email    = $(this).data('email');
+            let admintype   = $(this).data('typeid');
+            let status    = $(this).data('status');
+            let url     = $(this).data('url');
+
+            $(".adminName").val(name);
+            $(".adminEmail").val(email);
+            ( status == 'Active' ? $(".adminStatus").val(1).change() : $(".adminStatus").val(0).change() );
+            $(".adminType").val(admintype).change();
+            $(".editAdminForm").attr('action', url);
+        });
+
+        //delete admin type action
+        $(document).on('click', '.deleteAdminBtn', function(e){
+            let name    = $(this).data('name');
+            let url     = $(this).data('url');
+
+            $('.adminText').text(name);
+            $('.deleteAdminForm').attr('action', url);
+        })
+
+    });
+</script>
+
+@endpush
 
 @endsection
 

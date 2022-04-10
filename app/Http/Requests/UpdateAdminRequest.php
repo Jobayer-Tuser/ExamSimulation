@@ -13,7 +13,7 @@ class UpdateAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'             => 'required|string|between:2,100',
+            'email'            => 'required|string|email:filter|max:100',
+            'status'           => 'required',
+            'admin_type_id'    => 'required',
         ];
     }
 }
