@@ -9,15 +9,11 @@ use App\Models\AdminType;
 class AdminRepository implements AdminInterface
 {
 
-    public function getAllAdmin() : array
+    public function getAllAdmin()
     {
 
         $data['admintypes'] = AdminType::alltype()->get();
-        // $data['admins'] = Admin::with(['admintype' => function($query){
-        //                         $query->select('name');
-        //                     }])->allAdmin()->get();
-        $data['admins'] =  Admin::allAdmin()->get();
-        // dd($data['admins']->toArray());
+        $data['admins'] =  Admin::with('adminType')->allAdmin()->get();
         return $data;
     }
 

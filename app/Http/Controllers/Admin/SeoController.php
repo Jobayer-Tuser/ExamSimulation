@@ -17,7 +17,7 @@ class SeoController extends Controller
     public function index()
     {
         $data['pages'] = Page::select('id', 'title')->get();
-        $data['seos']  = Seo::all();
+        $data['seos']  = Seo::with('page')->get();
         return view('admin.seo.index', $data);
     }
 

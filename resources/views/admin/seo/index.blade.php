@@ -44,7 +44,7 @@
                                     @foreach ($seos as $seo)
                                         <tr>
                                             <td>{{ $n++ }}</td>
-                                            <td> {{ $seo->page_id }}</td>
+                                            <td> {{ $seo->page->title }}</td>
                                             <td> {{ $seo->meta_title }} </td>
                                             <td> {{ $seo->meta_keyword }} </td>
                                             <td> {{ $seo->meta_description }} </td>

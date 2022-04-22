@@ -5,8 +5,8 @@
 @section('button')
     <button data-toggle="modal" data-target="#createAdmin" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
 @endsection
-@section('content')
 
+@section('content')
 <section id="configuration">
     <div class="row mt-1">
         <div class="col-12">
@@ -46,8 +46,7 @@
                                             <td> {{ $n++ }} </td>
                                             <td> {{ $admin->name }}  </td>
                                             <td> {{ $admin->email }} </td>
-                                            <td></td>
-                                            {{-- <td> {{ $admin->admintype->name }} </td> --}}
+                                            <td> {{ $admin->adminType->name }} </td>
                                             <td> {{ $admin->status }} </td>
                                             <td>
                                                 <button  data-url="{{ route('admin.update', $admin->id) }}"  data-typeid="{{ $admin->admin_type_id }}" data-id="{{ $admin->id }}" data-name="{{ $admin->name }}" data-email="{{ $admin->email }}" data-status="{{ $admin->status }}" data-toggle="modal" data-target="#editAdmin" type="button" class="btn  btn-warning btn-sm editAdminBtn"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
