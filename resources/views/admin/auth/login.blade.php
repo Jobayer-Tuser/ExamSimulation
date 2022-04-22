@@ -48,7 +48,7 @@
 
                                         <fieldset class="form-group position-relative has-icon-left">
 
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter email" required autocomplete="email" autofocus/>
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter email" required autocomplete="email" autofocus />
                                             <div class="form-control-position"><i class="feather icon-user"></i></div>
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">

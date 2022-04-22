@@ -10,10 +10,26 @@ class Category extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $parentColumn = 'parent_category_id';
 
-    public function parent()
+    public function parentCategory()
     {
-        return $this->belongsTo(Category::class, 'parent_category_id', 'id');
+        return $this->belongsTo(Category::class, $this->parentColumn, 'id');
+    }
+
+    public function childrenCategory()
+    {
+        return $this->hasMany(Category::class, $this->parentColumn, 'id');
+    }
+
+    public function allParentCategory()
+    {
+        return $this->parentCategory()->with('allParentCategory');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 
     /**

@@ -13,7 +13,7 @@ class StoreAnswerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,24 @@ class StoreAnswerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'parent_category_id'    => 'required|integer',
+            'question_details'      => 'required|string',
+            'answer_type'           => 'required|string',
+            'text_options'          => 'sometimes|array',
+            'image_options'         => 'sometimes|array',
+            'correct_answer'            => 'required|array',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'correct_answer.required' => 'You have to select correct answer',
         ];
     }
 }

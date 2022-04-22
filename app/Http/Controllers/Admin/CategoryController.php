@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::with('parent')->select('id', 'name', 'status', 'parent_category_id')->get();
+        $data['categories'] = Category::with('allParentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
         // return $data;
         return view('admin.category.index', $data);
     }
@@ -42,9 +42,9 @@ class CategoryController extends Controller
     {
         // return $request;
         $validateData = $request->validate([
-            'parent_category_id' => 'sometimes',
-            'name' => 'required|string',
-            'status' => 'required',
+            'parent_category_id'    => 'sometimes',
+            'name'                  => 'required|string',
+            'status'                => 'required',
         ]);
 
         // return $validateData;
@@ -91,9 +91,9 @@ class CategoryController extends Controller
     {
 
         $validateData = $request->validate([
-            'parent_category_id' => 'sometimes',
-            'name' => 'required|string',
-            'status' => 'required',
+            'parent_category_id'    => 'sometimes',
+            'name'                  => 'required|string',
+            'status'                => 'required',
         ]);
 
         $category->parent_category_id = request('parent_category_id');

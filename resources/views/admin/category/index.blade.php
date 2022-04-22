@@ -32,8 +32,8 @@
                             <thead>
                                 <tr>
                                     <th class="min">Sl No.</th>
-                                    <th>Parent Category</th>
-                                    <th>Category Name</th>
+
+                                    <th>Category</th>
                                     <th>Status</th>
                                     <th class="min">Action</th>
                                 </tr>
@@ -46,8 +46,13 @@
                                     @foreach ($categories as $category)
                                         <tr>
                                             <td> {{ $n++ }}</td>
-                                            <td> {{ !empty($category->parent) ? $category->parent->name : null }} </td>
-                                            <td> {{ $category->name }} </td>
+                                            <td>
+                                                {{ isset($category->allParentCategory->allParentCategory->allParentCategory) ? $category->allParentCategory->allParentCategory->allParentCategory->name . " > " : null }}
+                                                {{ isset($category->allParentCategory->allParentCategory) ? $category->allParentCategory->allParentCategory->name . " > " : null }}
+                                                {{ isset($category->allParentCategory) ? $category->allParentCategory->name . " > " : null }}
+                                                {{ $category->name }}
+                                            </td>
+
                                             <td> <div class="badge badge-glow badge-pill {{ ($category->status == 'Active' ? 'badge-success' : 'badge-secondary') }}" >{{  $category->status  }} </div></td>
                                             <td>
                                                 <button data-toggle="modal"
@@ -68,10 +73,10 @@
                             <tfoot>
                                 <tr>
                                     <th>Sl No.</th>
-                                    <th>Parent Category</th>
+
                                     <th>Category Name</th>
                                     <th>Status</th>
-                                    <th class="min">Action</th> 
+                                    <th class="min">Action</th>
                                 </tr>
                             </tfoot>
                         </table>

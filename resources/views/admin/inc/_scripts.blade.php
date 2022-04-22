@@ -37,3 +37,6 @@
   <script src="{{ asset('assets/app-assets/js/core/app.min.js')}}"></script>
   <script src="{{ asset('assets/app-assets/js/scripts/customizer.min.js')}}"></script>
   <script src="{{ asset('assets/app-assets/js/scripts/forms/checkbox-radio.min.js')}}"></script>
+
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use App\Models\Question;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
+use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -17,7 +17,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::with('parent')->select('id', 'name', 'status', 'parent_category_id')->get();
+        $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
+        $data['questions']  = Question::with('category')->select('id', 'details', 'parent_category_id')->get();
         return view('admin.question.index', $data);
     }
 
@@ -37,9 +38,22 @@ class QuestionController extends Controller
      * @param  \App\Http\Requests\StoreQuestionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQuestionRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        //  return $request;
+         $validateData = $request->validate([
+            'parent_category_id'    => 'required',
+            'details'               => 'required|string',
+        ]);
+
+        if (Question::create($validateData)) {
+            notify()->success('Question created successfully!');
+            return redirect(route('question.index'));
+        } else {
+            notify()->warning('Something is wrong please recheck!');
+            return redirect(route('question.index'));
+        }
     }
 
     /**
@@ -71,7 +85,7 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionRequest $request, Question $question)
+    public function update(Request $request, Question $question)
     {
         //
     }
@@ -85,5 +99,16 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addAnswer(Request $request)
+    {
+        return $request;
     }
 }

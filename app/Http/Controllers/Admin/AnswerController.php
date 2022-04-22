@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Answer;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAnswerRequest;
 use App\Http\Requests\UpdateAnswerRequest;
-use App\Models\Answer;
-use App\Http\Controllers\Controller;
+use App\Models\Question;
 
 class AnswerController extends Controller
 {
@@ -37,7 +39,30 @@ class AnswerController extends Controller
      */
     public function store(StoreAnswerRequest $request)
     {
-        //
+        $request->validated();
+
+        // return $request;
+        if (request('answer_type') == 'Image') {
+
+        }
+
+        if(request('answer_type') == 'Text') {
+            $question = Question::create([
+                'parent_category_id' => request('parent_category_id'),
+                'details' => request('question_details'),
+            ]);
+
+            if( is_array(request('text_options')) && is_array(request('correct_answer')) ) {
+                for( $i = 0, $j = count(request('text_options')); $i < $j ; $i++) {
+                    Answer::create([
+                        'question_id' => $question->id,
+                        'answer_type' => request('answer_type'),
+                        'text_answer' => request('text_options')[$i],
+                        'correct_answer' => request('correct_answer')[$i],
+                    ]);
+                }
+            }
+        }
     }
 
     /**

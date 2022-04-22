@@ -16,8 +16,10 @@ class CreateAnswersTable extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('question_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->string('answers');
-            $table->string('status');
+            $table->enum('answer_type', ['Text', 'Image']);
+            $table->string('text_answer');
+            $table->string('image_answer');
+            $table->enum('correct_answer', ['Yes', 'No']);
             $table->timestamps();
         });
     }

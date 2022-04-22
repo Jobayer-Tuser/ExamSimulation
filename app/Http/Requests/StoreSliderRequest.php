@@ -13,7 +13,7 @@ class StoreSliderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class StoreSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "slider_group_id"=> 'required|integer',
+            "title"         => 'required|string|max:255',
+            "target_link"   => 'required|url',
+            "target_type"   => 'required|string',
+            "sequence"      => 'required|integer',
+            "status"        => 'required|string',
+            'file_name'     => 'required',
         ];
     }
 }
