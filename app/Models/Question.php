@@ -13,6 +13,6 @@ class Question extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'parent_category_id');
+        return $this->belongsTo(Category::class);
     }
 }

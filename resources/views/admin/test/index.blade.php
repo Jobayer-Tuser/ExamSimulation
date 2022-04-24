@@ -8,6 +8,55 @@
 
 @section('content')
 
+<section class="basic-elements">
+    <div class="row  mt-1">
+        <form action="{{ route('test.store') }}" method="POST">
+            @csrf
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Add Question and Answer</h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6">
+                                    <fieldset class="form-group">
+                                        <label for="test_name"> Test Name </label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="test_name" />
+
+                                        @error('name')
+                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
+                                        @enderror
+                                    </fieldset>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6">
+                                    <fieldset class="form-group">
+                                        <label for="question_details">Question name</label>
+                                        <select name="question_id" class="custom-select block @error('question_id') is-invalid @enderror" id="parent_category">
+                                            <option selected="">Select Question</option>
+                                            @if (!empty($questions))
+                                                @foreach ($questions as $question )
+                                                    <option value="{{ $question->id }}">{{ $question->details }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+
+                                        @error('question_id')
+                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
+                                        @enderror
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success float-right mb-1">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
 <section id="configuration">
     <div class="row mt-1">
         <div class="col-12">
@@ -36,16 +85,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $n = 1;
+                                @endphp
+                                @if (!empty($tests))
+                                    @foreach ($tests as $test)
+                                        <tr>
+                                            <td> {{ $n++ }} </td>
+                                            <td> {{ $test->name }} </td>
+                                            <td> {{ $test->question->details }} </td>
+                                            <td>
+                                                <button data-toggle="modal" data-target="#editQuestion" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
 
-                                <tr>
-                                    <td> 1 </td>
-                                    <td> BCS </td>
-                                    <td> Who is the prime miniter of bangldesh? </td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#editQuestion" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                        <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                    </td>
-                                </tr>
 
                             </tbody>
                             <tfoot>

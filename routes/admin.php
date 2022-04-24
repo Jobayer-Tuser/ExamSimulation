@@ -59,7 +59,8 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin'], function(){
     Route::resource('order', OrderController::class);
     Route::resource('testquestion', TestQuestionController::class);
 
-    Route::post('upload', [SliderController::class, 'filePondTemp'])->name('slider.file');
+    Route::post('upload/slider-image', [SliderController::class, 'filePondTemp'])->name('slider.file');
     Route::post('update/slider-status/{slider}', [SliderController::class, 'updateSliderStatus'])->name('slider.status.update');
-    Route::delete('delete/slider-image', [SliderController::class, 'deleteSliderImageFromSource'])->name('slider.image.delete');
+
+    Route::post('question-image', [AnswerController::class, 'imageAnswerUpload'])->name('answer.image.upload');
 });

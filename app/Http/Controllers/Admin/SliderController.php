@@ -132,12 +132,12 @@ class SliderController extends Controller
         if($request->hasFile('file_name')){
             $file = $request->file('file_name');
             $filenameWithExt = $request->file('file_name')->getClientOriginalName();
-            if (file_exists(asset('storage/slider-image/'. $filenameWithExt )) ) {
-                return null;
-            } else {
+
+            if ( ! file_exists(public_path('storage/slider-image/'. $filenameWithExt )) ) {
                 $path = $request->file('file_name')->storeAs('public/slider-image/', $filenameWithExt);
                 return $filenameWithExt;
             }
+            return null;
         }
         return '';
     }

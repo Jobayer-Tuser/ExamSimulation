@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAnswerRequest;
 use App\Http\Requests\UpdateAnswerRequest;
+use App\Models\Category;
 use App\Models\Question;
 
 class AnswerController extends Controller
@@ -44,11 +45,26 @@ class AnswerController extends Controller
         // return $request;
         if (request('answer_type') == 'Image') {
 
+            $question = Question::create([
+                'category_id' => request('parent_category_id'),
+                'details' => request('question_details'),
+            ]);
+
+            if( is_array(request('image_options')) && is_array(request('correct_answer')) ) {
+                for( $i = 0, $j = count(request('image_options')); $i < $j ; $i++) {
+                    Answer::create([
+                        'question_id' => $question->id,
+                        'answer_type' => request('answer_type'),
+                        'text_answer' => request('image_options')[$i],
+                        'correct_answer' => request('correct_answer')[$i],
+                    ]);
+                }
+            }
         }
 
         if(request('answer_type') == 'Text') {
             $question = Question::create([
-                'parent_category_id' => request('parent_category_id'),
+                'category_id' => request('parent_category_id'),
                 'details' => request('question_details'),
             ]);
 
@@ -63,6 +79,7 @@ class AnswerController extends Controller
                 }
             }
         }
+        return redirect(route('question.index'));
     }
 
     /**
@@ -84,7 +101,11 @@ class AnswerController extends Controller
      */
     public function edit(Answer $answer)
     {
-        //
+        $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
+        // $data['question']  = Question::with('category')->select('id', 'details', 'category_id')->get();
+        return $data['answer']  = $answer;
+        // $data['answers'] =
+        return view('admin.question.edit', $data);
     }
 
     /**
@@ -108,5 +129,19 @@ class AnswerController extends Controller
     public function destroy(Answer $answer)
     {
         //
+    }
+
+    public function imageAnswerUpload(Request $request)
+    {
+        if($request->hasFile('image_options')){
+            $file = $request->file('image_options');
+            $filenameWithExt = $request->file('image_options')[0]->getClientOriginalName();
+
+            if ( ! file_exists(public_path('storage/question-image/'. $filenameWithExt )) ) {
+                $path = $request->file('image_options')[0]->storeAs('public/question-image/', $filenameWithExt);
+                return $filenameWithExt;
+            }
+            return null;
+        }
     }
 }

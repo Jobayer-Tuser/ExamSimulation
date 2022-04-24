@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTestRequest;
 use App\Http\Requests\UpdateTestRequest;
 use App\Models\Test;
 use App\Http\Controllers\Controller;
+use App\Models\Question;
 
 class TestController extends Controller
 {
@@ -16,7 +17,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        return view('admin.test.index');
+        $data['questions'] = Question::select('id', 'details')->get();
+        return $data['tests'] = Test::with('question')->get();
+        return view('admin.test.index', $data);
     }
 
     /**
@@ -37,7 +40,10 @@ class TestController extends Controller
      */
     public function store(StoreTestRequest $request)
     {
-        //
+        $validateData = $request->validated();
+        if(Test::create($validateData)){
+            return redirect(route('test.index'));
+        }
     }
 
     /**

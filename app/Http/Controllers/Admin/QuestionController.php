@@ -18,7 +18,7 @@ class QuestionController extends Controller
     public function index()
     {
         $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
-        $data['questions']  = Question::with('category')->select('id', 'details', 'parent_category_id')->get();
+        $data['questions']  = Question::with('category')->select('id', 'details', 'category_id')->get();
         return view('admin.question.index', $data);
     }
 
@@ -41,19 +41,6 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
 
-        //  return $request;
-         $validateData = $request->validate([
-            'parent_category_id'    => 'required',
-            'details'               => 'required|string',
-        ]);
-
-        if (Question::create($validateData)) {
-            notify()->success('Question created successfully!');
-            return redirect(route('question.index'));
-        } else {
-            notify()->warning('Something is wrong please recheck!');
-            return redirect(route('question.index'));
-        }
     }
 
     /**
@@ -75,7 +62,10 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
+        $data['questions']  = Question::with('category')->select('id', 'details', 'category_id')->get();
+        // $data['answers'] =
+        return view('admin.question.edit', $data);
     }
 
     /**

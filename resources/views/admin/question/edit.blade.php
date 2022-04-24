@@ -5,7 +5,8 @@
 @section('content')
 <section class="basic-elements">
     <div class="row  mt-1">
-        <form action="{{ route('answer.store') }}" method="POST">
+        <form action="{{ route('answer.update', $answer->id) }}" method="POST">
+            @method('PATCH')
             @csrf
             <div class="col-md-12">
                 <div class="card">
@@ -130,69 +131,6 @@
                 </div>
             </div>
         </form>
-    </div>
-</section>
-
-<section id="configuration">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Question list</h4>
-                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li><a data-action="collapse"><i class="feather icon-minus"></i></a></li>
-                            <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>
-                            <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
-                            <li><a data-action="close"><i class="feather icon-x"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-content collapse show">
-                    <div class="card-body card-dashboard">
-                        <table class="table table-striped table-bordered zero-configuration">
-                            <thead>
-                                <tr>
-                                    <th class="min">Sl No.</th>
-                                    <th>Parent Category</th>
-                                    <th>Question</th>
-                                    <th class="min" >Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $n = 1;
-                                @endphp
-                                @if (!empty($questions))
-                                    @foreach ( $questions as $question)
-                                        <tr>
-                                            <td>{{ $n++ }}</td>
-                                            {{-- @dump($question) --}}
-                                            <td>{{ isset($question->category->name) ?? $question->category->name }}</td>
-                                            <td> {{ $question->details }} </td>
-                                            <td>
-                                                <a href="{{ route('answer.edit', $question->id) }}" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </a>
-                                                <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Sl No.</th>
-                                    <th>Parent Category</th>
-                                    <th>Category Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
