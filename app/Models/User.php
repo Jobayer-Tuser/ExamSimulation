@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
       return $this->account_password;
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

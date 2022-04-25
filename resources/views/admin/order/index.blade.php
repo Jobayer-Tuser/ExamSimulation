@@ -38,20 +38,27 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $n = 1;
+                                @endphp
+                                @if ( !empty($orders) )
+                                    @foreach ( $orders as $order )
+                                        <tr>
+                                            {{-- <td>{{ $n++ }}</td>
+                                            <td>{{ $order->order_date }}</td>
+                                            <td> {{ $order->customer->name }} </td>
+                                            <td> {{ $order->product->item_quantity }} </td>
+                                            <td> {{ $order->product->grand_total }} </td> --}}
+                                            <td> 2000 tk </td>
+                                            <td> <button type="button" class="btn  btn-warning btn-sm">Pending </button> </td>
+                                            <td>
+                                                <button data-toggle="modal" data-target="#seoEdit" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
 
-                                <tr>
-                                    <td>1</td>
-                                    <td>12</td>
-                                    <td> Nirjhor Anjum </td>
-                                    <td> General Knowledge </td>
-                                    <td> 1 </td>
-                                    <td> 2000 tk </td>
-                                    <td> <button type="button" class="btn  btn-warning btn-sm">Pending </button> </td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#seoEdit" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                        <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
-                                    </td>
-                                </tr>
 
                             </tbody>
                             <tfoot>

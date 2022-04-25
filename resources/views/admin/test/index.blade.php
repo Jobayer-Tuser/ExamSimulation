@@ -93,7 +93,7 @@
                                         <tr>
                                             <td> {{ $n++ }} </td>
                                             <td> {{ $test->name }} </td>
-                                            <td> {{ $test->question->details }} </td>
+                                            <td> {{ $test->question[0]->details }} </td>
                                             <td>
                                                 <button data-toggle="modal" data-target="#editQuestion" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
                                                 <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
