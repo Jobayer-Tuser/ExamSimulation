@@ -27,28 +27,13 @@
 
                                         @error('name')
                                             <span class="text-danger"> <strong>{{ $message }}</strong></span>
-                                        @enderror
-                                    </fieldset>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6">
-                                    <fieldset class="form-group">
-                                        <label for="question_details">Question name</label>
-                                        <select name="question_id" class="custom-select block @error('question_id') is-invalid @enderror" id="parent_category">
-                                            <option selected="">Select Question</option>
-                                            @if (!empty($questions))
-                                                @foreach ($questions as $question )
-                                                    <option value="{{ $question->id }}">{{ $question->details }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-
-                                        @error('question_id')
-                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
-                                        @enderror
-                                    </fieldset>
+                                            @enderror
+                                        </fieldset>
+                                    </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 mt-2">
+                                    <button type="submit" class="btn btn-outline-success float-right">Save</button>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-outline-success float-right mb-1">Save</button>
                         </div>
                     </div>
                 </div>
@@ -78,10 +63,9 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
-                                    <th>Sl No.</th>
+                                    <th class="min">Sl No.</th>
                                     <th>Test Name </th>
-                                    <th>Question</th>
-                                    <th>Action</th>
+                                    <th class="min">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,7 +77,6 @@
                                         <tr>
                                             <td> {{ $n++ }} </td>
                                             <td> {{ $test->name }} </td>
-                                            <td> {{ $test->question[0]->details }} </td>
                                             <td>
                                                 <button data-toggle="modal" data-target="#editQuestion" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
                                                 <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
@@ -108,7 +91,6 @@
                                 <tr>
                                     <th>Sl No.</th>
                                     <th>Test Name </th>
-                                    <th>Question</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>

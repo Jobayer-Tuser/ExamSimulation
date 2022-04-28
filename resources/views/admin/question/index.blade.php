@@ -15,7 +15,7 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="row answerOptions">
-                                <div class="col-xl-4 col-lg-6 col-md-4 mb-1">
+                                <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                     <fieldset class="form-group">
                                         <label for="parent_category">Select Category</label>
                                         <select name="parent_category_id" class="custom-select @error('parent_category_id') is-invalid @enderror" id="parent_category">
@@ -33,9 +33,26 @@
                                     </fieldset>
 
                                 </div>
-                                <div class="col-xl-8 col-lg-6 col-md-8 mb-1">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                     <fieldset class="form-group">
-                                        <label for="question_details">Question Details</label>
+                                        <label for="test_id">Test name</label> <br/>
+                                        @if ( !empty($tests))
+                                            @foreach ($tests as $test )
+                                                <input type="checkbox" name="test_id[]" value="{{ $test->id }}" class=" ml-1 @error('test_id') is-invalid @enderror" /> {{ $test->name }}
+                                            @endforeach
+                                        @endif
+
+                                        @error('test_id')
+                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
+                                        @enderror
+                                    </fieldset>
+
+                                </div>
+
+                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <fieldset class="form-group">
+                                        <label for="question_details">Question Title</label>
                                         <input name="question_details" type="text" class="form-control @error('question_details') is-invalid @enderror" id="question_details" value="{{ old('question_details') }}" />
 
                                         @error('question_details')
@@ -43,42 +60,17 @@
                                         @enderror
                                     </fieldset>
                                 </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-                                    <label for="add_anwer"><strong> Add Answer </strong></label>
-                                    <hr/>
-                                </div>
-                                <div class="col-xl-8 col-lg-6 col-md-8 mb-1">
-                                </div>
-
-                                <div class="col-xl-4 col-lg-6 col-md-8 mb-1">
-                                    <label for="answer_type">Answer Type</label>
-                                </div>
 
                                 <div class="col-xl-8 col-lg-6 col-md-8">
-                                    <fieldset class="radio">
-                                        <label>
-                                            <input class="textAnswer @error('answer_type') is-invalid @enderror" checked type="radio" name="answer_type" value="Text"> Text
-                                        </label>
-
-                                        <label>
-                                            <input class="imageAnswer @error('answer_type') is-invalid @enderror" type="radio" name="answer_type" value="Image"> Image
-                                        </label>
-
-                                        @error('answer_type')
-                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
-                                        @enderror
-                                    </fieldset>
+                                    <strong>Add Answer</strong>
                                 </div>
-
-                                <div class="col-xl-4 col-lg-6 col-md-4">
-                                </div>
-
-                                <div class="col-xl-8 col-lg-6 col-md-8">
+                                <div class="col-xl-10 col-lg-10 col-md-10">
                                     <table class="table table-borderd">
                                         <thead>
                                             <tr>
                                                 <th>Options</th>
-                                                <th class="min">Is Correct</th>
+                                                <th class="min">Answer type</th>
+                                                <th class="min">Correct Answer</th>
                                                 <th class="min">Action</th>
                                             </tr>
                                         </thead>
@@ -96,6 +88,21 @@
                                                             accept="image/png, image/jpeg, image/jpg"
                                                         />
                                                         @error('text_options')
+                                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
+                                                        @enderror
+                                                    </fieldset>
+                                                </td>
+                                                <td>
+                                                    <fieldset class="radio">
+                                                        <label>
+                                                            <input class="textAnswer @error('answer_type') is-invalid @enderror" checked type="radio" name="answer_type" value="Text"> Text
+                                                        </label>
+
+                                                        <label>
+                                                            <input class="imageAnswer @error('answer_type') is-invalid @enderror" type="radio" name="answer_type" value="Image"> Image
+                                                        </label>
+
+                                                        @error('answer_type')
                                                             <span class="text-danger"> <strong>{{ $message }}</strong></span>
                                                         @enderror
                                                     </fieldset>
@@ -119,12 +126,11 @@
                                                     </button>
                                                 </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-outline-success">Save</button>
+                            <button type="submit" class="btn btn-outline-success float-right mb-2">Save</button>
                         </div>
                     </div>
                 </div>
@@ -200,7 +206,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        var maxField = 5; //Input fields increment limitation
+        var maxField = 3; //Input fields increment limitation
         var addButton = $('.addOptions'); //Add button selector
         var wrapper = $('.multipleOptions'); //Input field wrapper
         let optionCount = 1;
@@ -219,6 +225,17 @@
                                     :
                                     `<input name="text_options[]" type="text" class="form-control textOptions" id="options"/>`
                             }
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset class="radio">
+                            <label>
+                                <input class="textAnswer" checked type="radio" name="answer_type" value="Text"> Text
+                            </label>
+
+                            <label>
+                                <input class="imageAnswer" type="radio" name="answer_type" value="Image"> Image
+                            </label>
                         </fieldset>
                     </td>
                     <td>

@@ -67,6 +67,13 @@
             <!-- Category Menu End -->
 
             <!-- Question Menu Start -->
+            <li class=" nav-item"><a href="#"><i class="feather icon-slack"></i><span class="menu-title" data-i18n="Calender">Test</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Request::is('admin/test') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('test.index') }}" data-i18n="Test">Tests</a>
+                    </li>
+
+                </ul>
+            </li>
             <li class=" nav-item"><a href="#"><i class="feather icon-inbox"></i><span class="menu-title" data-i18n="Calender">Question</span></a>
                 <ul class="menu-content">
                     <li class="{{ Request::is('admin/question') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('question.index') }}" data-i18n="Full Calender Basic">Question</a>
@@ -74,14 +81,6 @@
                 </ul>
             </li>
 
-            <li class=" nav-item"><a href="#"><i class="feather icon-slack"></i><span class="menu-title" data-i18n="Calender">Test</span></a>
-                <ul class="menu-content">
-                    <li class="{{ Request::is('admin/test') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('test.index') }}" data-i18n="Test">Tests</a>
-                    </li>
-                    <li class="{{ Request::is('admin/test') ? 'active' : '' }}" ><a class="menu-item" href="{{ route('testquestion.index') }}" data-i18n="Full Calender Basic">Test Question</a>
-                    </li>
-                </ul>
-            </li>
             <!-- Question Menu End -->
 
             <!-- Coupon Menu End -->

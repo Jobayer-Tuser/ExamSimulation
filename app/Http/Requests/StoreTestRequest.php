@@ -25,7 +25,6 @@ class StoreTestRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:100',
-            'question_id' => 'required|integer|exists:questions,id',
         ];
     }
 }

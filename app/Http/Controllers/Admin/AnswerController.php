@@ -45,10 +45,15 @@ class AnswerController extends Controller
         // return $request;
         if (request('answer_type') == 'Image') {
 
-            $question = Question::create([
-                'category_id' => request('parent_category_id'),
-                'details' => request('question_details'),
-            ]);
+            if( is_array(request('test_id'))) {
+                for( $i = 0, $j = count(request('test_id')); $i < $j ; $i++) {
+                    $question = Question::create([
+                        'category_id' => request('parent_category_id'),
+                        'test_id' => request('test_id')[$i],
+                        'details' => request('question_details'),
+                    ]);
+                }
+            }
 
             if( is_array(request('image_options')) && is_array(request('correct_answer')) ) {
                 for( $i = 0, $j = count(request('image_options')); $i < $j ; $i++) {
@@ -63,10 +68,16 @@ class AnswerController extends Controller
         }
 
         if(request('answer_type') == 'Text') {
-            $question = Question::create([
-                'category_id' => request('parent_category_id'),
-                'details' => request('question_details'),
-            ]);
+
+            if( is_array(request('test_id'))) {
+                for( $i = 0, $j = count(request('test_id')); $i < $j ; $i++) {
+                    $question = Question::create([
+                        'category_id' => request('parent_category_id'),
+                        'test_id' => request('test_id')[$i],
+                        'details' => request('question_details'),
+                    ]);
+                }
+            }
 
             if( is_array(request('text_options')) && is_array(request('correct_answer')) ) {
                 for( $i = 0, $j = count(request('text_options')); $i < $j ; $i++) {

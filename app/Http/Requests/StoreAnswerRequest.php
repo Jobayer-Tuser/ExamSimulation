@@ -25,6 +25,7 @@ class StoreAnswerRequest extends FormRequest
     {
         return [
             'parent_category_id'    => 'required|integer',
+            'test_id'               => 'required|array',
             'question_details'      => 'required|string',
             'answer_type'           => 'required|string',
             'text_options'          => 'sometimes|array',

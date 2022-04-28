@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Question;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateQuestionRequest;
+use App\Models\Test;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -19,6 +20,7 @@ class QuestionController extends Controller
     {
         $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
         $data['questions']  = Question::with('category')->select('id', 'details', 'category_id')->get();
+        $data['tests']      = Test::select('id', 'name')->get();
         return view('admin.question.index', $data);
     }
 
@@ -64,7 +66,7 @@ class QuestionController extends Controller
     {
         $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
         $data['questions']  = Question::with('category')->select('id', 'details', 'category_id')->get();
-        // $data['answers'] =
+
         return view('admin.question.edit', $data);
     }
 

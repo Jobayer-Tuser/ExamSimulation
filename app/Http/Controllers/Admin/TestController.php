@@ -17,8 +17,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $data['questions'] = Question::select('id', 'details')->get();
-        $data['tests'] = Test::with('question')->get();
+        $data['tests'] = Test::select('id', 'name')->get();
         return view('admin.test.index', $data);
     }
 
