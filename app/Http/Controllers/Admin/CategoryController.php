@@ -36,7 +36,7 @@ class CategoryController extends Controller
                                         'ssscat.id as ssscat_id',
                                         'ssscat.name as ssscat_name',
                                         'ssscat.status as ssscat_status'
-                                    )
+                                    )->orderBy('cat_id')
                                     ->get();
         // return $data;
         return view('admin.category.index', $data);

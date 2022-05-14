@@ -5,7 +5,7 @@
 @section('content')
 <section class="basic-elements">
     <div class="row  mt-1">
-        <form action="{{ route('answer.store') }}" method="POST">
+        <form action="{{ route('answer.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="col-md-12">
                 <div class="card">
@@ -22,7 +22,32 @@
                                             <option selected="">Select Category</option>
                                             @if ( !empty($categories))
                                                 @foreach ($categories as $category )
-                                                    <option value="{{ $category->id }}" @if (old('parent_category_id') == $category->id) selected @endif > {{ $category->name }}</option>
+
+                                                    @dump($category)
+
+                                                    {{-- <option value="{{ $category->cat_id }}" @if (old('parent_category_id') == $category->id) selected @endif > --}}
+                                                        <option value="
+                                                        @php
+                                                            if ( !empty($category->ssscat_id) ) {
+                                                                $category->ssscat_id;
+                                                                unset($category->sscat_id, $category->subcat_id, $category->cat_id);
+                                                            }
+                                                            if ( !empty($category->subcat_id) ) {
+                                                                $category   ->subcat_id;
+                                                                unset($category->sscat_id, $category->cat_id);
+                                                            }
+                                                            if ( !empty($category->cat_id) ) {
+                                                                $category->cat_id;
+                                                                unset($category->subcat_id, $category->cat_id);
+                                                            }
+                                                        @endphp
+                                                    ">
+                                                    {{
+                                                        $category->cat_name . ' > ' .
+                                                        $category->subcat_name .' > ' .
+                                                        $category->sscat_name . ' > ' .
+                                                        $category->ssscat_name
+                                                    }} </option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -64,7 +89,7 @@
                                 <div class="col-xl-8 col-lg-6 col-md-8">
                                     <strong>Add Answer</strong>
                                 </div>
-                                <div class="col-xl-10 col-lg-10 col-md-10">
+                                <div class="col-xl-11 col-lg-11 col-md-11">
                                     <table class="table table-borderd">
                                         <thead>
                                             <tr>
@@ -79,41 +104,28 @@
                                             <tr>
                                                 <td>
                                                     <fieldset class="form-group">
-                                                        <input name="text_options[]" type="text" class="form-control textOptions  @error('text_options') is-invalid @enderror" id="options"/>
-                                                        <input id="pond1" type="file" class="filepond d-none imageOptions"
-                                                            name="image_options[]"
-                                                            data-allow-reorder="true"
-                                                            data-max-file-size="2MB"
-                                                            data-max-files="4"
-                                                            accept="image/png, image/jpeg, image/jpg"
-                                                        />
-                                                        @error('text_options')
-                                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
-                                                        @enderror
+                                                        <input id="textOption1" name="answer[1][text_options_1]" type="text" class="form-control textOptions" />
+                                                        <input id="imageOption1" name="answer[1][image_options_1]" type="file" class="form-control imageOptions d-none" accept="image/png, image/jpeg, image/jpg" />
                                                     </fieldset>
                                                 </td>
                                                 <td>
                                                     <fieldset class="radio">
                                                         <label>
-                                                            <input class="textAnswer @error('answer_type') is-invalid @enderror" checked type="radio" name="answer_type" value="Text"> Text
+                                                            <input id="1" class="textAnswer @error('answer_type') is-invalid @enderror" checked type="radio" name="answer[1][answer_type_1]" value="Text"> Text
                                                         </label>
 
                                                         <label>
-                                                            <input class="imageAnswer @error('answer_type') is-invalid @enderror" type="radio" name="answer_type" value="Image"> Image
+                                                            <input id="1" class="imageAnswer @error('answer_type') is-invalid @enderror" type="radio" name="answer[1][answer_type_1]" value="Image"> Image
                                                         </label>
-
-                                                        @error('answer_type')
-                                                            <span class="text-danger"> <strong>{{ $message }}</strong></span>
-                                                        @enderror
                                                     </fieldset>
                                                 </td>
                                                 <td>
                                                     <fieldset class="form-group">
                                                         <label>
-                                                            <input class="@error('correct_answer') is-invalid @enderror" type="checkbox" name="correct_answer[]" value="Yes"> Yes
+                                                            <input class="@error('correct_answer') is-invalid @enderror" type="radio" name="answer[1][correct_answer_1]" value="Yes"> Yes
                                                         </label>
                                                         <label>
-                                                            <input class="@error('correct_answer') is-invalid @enderror" type="checkbox" name="correct_answer[]" value="No"> No
+                                                            <input class="@error('correct_answer') is-invalid @enderror" type="radio" name="answer[1][correct_answer_1]" value="No"> No
                                                         </label>
                                                     </fieldset>
                                                     @error('correct_answer')
@@ -147,7 +159,7 @@
                     <h4 class="card-title">Question list</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
-                        <ul class="list-inline mb-0">
+                        <ul class="list-inline mb-1">
                             <li><a data-action="collapse"><i class="feather icon-minus"></i></a></li>
                             <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>
                             <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
@@ -178,7 +190,7 @@
                                             <td>{{ isset($question->category->name) ?? $question->category->name }}</td>
                                             <td> {{ $question->details }} </td>
                                             <td>
-                                                <a href="{{ route('answer.edit', $question->id) }}" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </a>
+                                                <a href="{{ route('question.edit', $question->id) }}" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </a>
                                                 <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
                                             </td>
                                         </tr>
@@ -204,47 +216,40 @@
 
 @push('script')
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready( function() {
 
-        var maxField = 3; //Input fields increment limitation
         var addButton = $('.addOptions'); //Add button selector
         var wrapper = $('.multipleOptions'); //Input field wrapper
         let optionCount = 1;
 
         //Once add button is clicked
-        $(addButton).click(function(){
-            let answerType = $("[name='answer_type']").val();
+        $(addButton).click( function() {
             optionCount++;
             var fieldHTML = `
                 <tr id="row${optionCount}">
                     <td>
                         <fieldset class="form-group">
-                            ${
-                                ( answerType == "Image") ?
-                                    `<input id="pond${optionCount}" type="file" class="filepond imageOptions" name="image_options[]" data-allow-reorder="true" data-max-file-size="2MB" data-max-files="4"/>`
-                                    :
-                                    `<input name="text_options[]" type="text" class="form-control textOptions" id="options"/>`
-                            }
+                            <input id="textOption${optionCount}" name="answer[${optionCount}][text_options_${optionCount}]" type="text" class="form-control textOptions" />
+                            <input id="imageOption${optionCount}" name="answer[${optionCount}][image_options_${optionCount}]" type="file" class="form-control d-none imageOptions" accept="image/png, image/jpeg, image/jpg" />
                         </fieldset>
                     </td>
                     <td>
                         <fieldset class="radio">
                             <label>
-                                <input class="textAnswer" checked type="radio" name="answer_type" value="Text"> Text
+                                <input id="${optionCount}" class="textAnswer" checked type="radio" name="answer[${optionCount}][answer_type_${optionCount}]" value="Text"> Text
                             </label>
-
                             <label>
-                                <input class="imageAnswer" type="radio" name="answer_type" value="Image"> Image
+                                <input id="${optionCount}" class="imageAnswer" type="radio" name="answer[${optionCount}][answer_type_${optionCount}]" value="Image"> Image
                             </label>
                         </fieldset>
                     </td>
                     <td>
                         <fieldset class="form-group">
                             <label>
-                                <input type="checkbox" name="correct_answer[]" value="Yes"> Yes
+                                <input type="radio" name="answer[${optionCount}][correct_answer_${optionCount}]" value="Yes"> Yes
                             </label>
                             <label>
-                                <input type="checkbox" name="correct_answer[]" value="No"> No
+                                <input type="radio" name="answer[${optionCount}][correct_answer_${optionCount}]" value="No"> No
                             </label>
                         </fieldset>
                     </td>
@@ -256,49 +261,28 @@
                 </tr>
             `;
             $(wrapper).append(fieldHTML);
-
-            let pondId = "pond" + optionCount;
-            loadFilepond(pondId);
         });
 
         //Once remove button is clicked
         $(wrapper).on('click', '.removeOptions', function(e){
             e.preventDefault();
             let buttonId = $(this).attr("id");
-            $('#row' + buttonId + '').remove(); //Remove field html
+            $('#row' + buttonId).remove();
         });
 
         $(document).on('click', '.imageAnswer', function(e) {
-            $('tr[id*=row]').remove(); //delete all created content in this id
-            $('[name="answer_type"]').val("Image");
-            $('.imageOptions').removeClass("d-none");
-            $('.textOptions').addClass('d-none');
+            let optionsId = $(this).attr("id");
+            $('#imageOption' + optionsId).removeClass("d-none");
+            $('#textOption' + optionsId).addClass('d-none');
         });
 
         $(document).on('click', '.textAnswer', function(e) {
-            $('tr[id*=row]').remove();
-            $('[name="answer_type"]').val("Text");
-            $('.textOptions').removeClass("d-none");
-            $('.imageOptions').addClass('d-none');
+            let optionsId = $(this).attr("id");
+            $('#textOption' + optionsId).removeClass('d-none');
+            $('#imageOption' + optionsId).addClass("d-none");
         });
     });
-</script>
 
-<script>
-    loadFilepond('pond1');
-    function loadFilepond( filePondId ){
-        console.log('input#' + filePondId);
-        let inputElement = document.querySelector('input#' + filePondId);
-        FilePond.create(inputElement);
-        FilePond.setOptions({
-            server: {
-                url :  "{{ route('answer.image.upload') }}",
-                headers: {
-                    'X-CSRF-TOKEN' : '{{ csrf_token() }}'
-                }
-            }
-        })
-    }
 
 </script>
 @endpush

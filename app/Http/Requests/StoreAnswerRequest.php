@@ -27,10 +27,6 @@ class StoreAnswerRequest extends FormRequest
             'parent_category_id'    => 'required|integer',
             'test_id'               => 'required|array',
             'question_details'      => 'required|string',
-            'answer_type'           => 'required|string',
-            'text_options'          => 'sometimes|array',
-            'image_options'         => 'sometimes|array',
-            'correct_answer'        => 'required|array',
         ];
     }
 

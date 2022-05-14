@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Test;
 use App\Models\Category;
 use App\Models\Question;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateQuestionRequest;
-use App\Models\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
+use App\Http\Requests\UpdateQuestionRequest;
+use App\Models\Answer;
 
 class QuestionController extends Controller
 {
+    private $category;
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->category = $categoryRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +26,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
+        $data['categories'] = $this->category->getAllCategories();
         $data['questions']  = Question::with('category')->select('id', 'details', 'category_id')->get();
+        // $data['questions']  = DB::table(' ')->get();
         $data['tests']      = Test::select('id', 'name')->get();
         return view('admin.question.index', $data);
     }
@@ -64,8 +73,12 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
-        $data['questions']  = Question::with('category')->select('id', 'details', 'category_id')->get();
+        // return $question;
+        // return $data['tests'] = Question::with('tests')->where('id', $question->id)->get();
+        $data['answers'] = Answer::where('question_id', $question->id)->get();
+        $data['categories'] = $this->category->getAllCategories();
+        $data['question']  = $question;
+        $data['tests']      = Test::select('id', 'name')->get();
 
         return view('admin.question.edit', $data);
     }

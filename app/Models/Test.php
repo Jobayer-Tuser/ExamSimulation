@@ -13,6 +13,6 @@ class Test extends Model
 
     public function question()
     {
-        return $this->hasMany(Question::class, 'id', 'question_id');
+        return $this->belongsToMany(Question::class);
     }
 }

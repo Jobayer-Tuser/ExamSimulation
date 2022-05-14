@@ -40,56 +40,36 @@ class AnswerController extends Controller
      */
     public function store(StoreAnswerRequest $request)
     {
-        $request->validated();
+        for( $i = 0, $j = count(request('test_id')); $i < $j; $i++ ) {
 
-        // return $request;
-        if (request('answer_type') == 'Image') {
+            $question = Question::create([
+                'category_id' => request('parent_category_id'),
+                'test_id' => request('test_id')[$i],
+                'details' => request('question_details'),
+            ]);
 
-            if( is_array(request('test_id'))) {
-                for( $i = 0, $j = count(request('test_id')); $i < $j ; $i++) {
-                    $question = Question::create([
-                        'category_id' => request('parent_category_id'),
-                        'test_id' => request('test_id')[$i],
-                        'details' => request('question_details'),
-                    ]);
+            foreach( request('answer') as $key => $value ) {
+
+                if ( ! empty($value['image_options_'. $key]) ){
+
+                    $file = $value['image_options_'. $key];
+                    $fileNameToSave = "ANSWER_". $file->getClientOriginalName();
+
+                    if ( ! file_exists(public_path('storage/answer-image/'. $fileNameToSave )) ) {
+                        $path =  $file->storeAs('storage/answer-image/', $fileNameToSave);
+                    }
                 }
-            }
+                $answer = Answer::create([
+                    'question_id' => $question->id,
+                    'answer_type' => $value['answer_type_'. $key],
+                    'text_answer' => $value['text_options_'. $key],
+                    'image_answer' => $fileNameToSave,
+                    'correct_answer' => $value['correct_answer_'. $key],
+                ]);
 
-            if( is_array(request('image_options')) && is_array(request('correct_answer')) ) {
-                for( $i = 0, $j = count(request('image_options')); $i < $j ; $i++) {
-                    Answer::create([
-                        'question_id' => $question->id,
-                        'answer_type' => request('answer_type'),
-                        'text_answer' => request('image_options')[$i],
-                        'correct_answer' => request('correct_answer')[$i],
-                    ]);
-                }
-            }
-        }
-
-        if(request('answer_type') == 'Text') {
-
-            if( is_array(request('test_id'))) {
-                for( $i = 0, $j = count(request('test_id')); $i < $j ; $i++) {
-                    $question = Question::create([
-                        'category_id' => request('parent_category_id'),
-                        'test_id' => request('test_id')[$i],
-                        'details' => request('question_details'),
-                    ]);
-                }
-            }
-
-            if( is_array(request('text_options')) && is_array(request('correct_answer')) ) {
-                for( $i = 0, $j = count(request('text_options')); $i < $j ; $i++) {
-                    Answer::create([
-                        'question_id' => $question->id,
-                        'answer_type' => request('answer_type'),
-                        'text_answer' => request('text_options')[$i],
-                        'correct_answer' => request('correct_answer')[$i],
-                    ]);
-                }
             }
         }
+
         return redirect(route('question.index'));
     }
 
@@ -112,11 +92,7 @@ class AnswerController extends Controller
      */
     public function edit(Answer $answer)
     {
-        $data['categories'] = Category::with('parentCategory')->select('id', 'name', 'status', 'parent_category_id')->get();
-        // $data['question']  = Question::with('category')->select('id', 'details', 'category_id')->get();
-        return $data['answer']  = $answer;
-        // $data['answers'] =
-        return view('admin.question.edit', $data);
+
     }
 
     /**
@@ -128,7 +104,44 @@ class AnswerController extends Controller
      */
     public function update(UpdateAnswerRequest $request, Answer $answer)
     {
-        //
+        return $request;
+
+        for( $i = 0, $j = count(request('test_id')); $i < $j; $i++ ) {
+
+            $question = Question::where('id', $request->question_id)->get();
+            $question->category_id = $request->parent_category_id;
+            $question->test_id = $request->test_id[$i];
+            $question->details = $request->question_details;
+            $question->save();
+
+            foreach( request('answer') as $key => $value ) {
+
+                $answer = Answer::where('id', $value['answer_id_'. $key]);
+
+                if ( ! empty($value['image_options_'. $key]) ){
+
+                    $file = $value['image_options_'. $key];
+                    $fileNameToSave = "ANSWER_". $file->getClientOriginalName();
+
+                    $oldFile = public_path('storage/answer-image/'. $answer->image_answer );
+
+                    if( file_exists($oldFile) ){
+                        unlink($oldFile);
+
+                        $storeNewFile =  $file->storeAs('public/answer-image/', $fileNameToSave);
+                    }
+                }
+                $answer->question_id = $question->id;
+                $answer->answer_type = $value['answer_type_'. $key];
+                $answer->text_answer = $value['text_options_'. $key];
+                $answer->image_answer = $fileNameToSave;
+                $answer->correct_answer = $value['correct_answer_'. $key];
+                $answer->save();
+
+            }
+        }
+
+        return redirect(route('question.index'));
     }
 
     /**
@@ -140,19 +153,5 @@ class AnswerController extends Controller
     public function destroy(Answer $answer)
     {
         //
-    }
-
-    public function imageAnswerUpload(Request $request)
-    {
-        if($request->hasFile('image_options')){
-            $file = $request->file('image_options');
-            $filenameWithExt = $request->file('image_options')[0]->getClientOriginalName();
-
-            if ( ! file_exists(public_path('storage/question-image/'. $filenameWithExt )) ) {
-                $path = $request->file('image_options')[0]->storeAs('public/question-image/', $filenameWithExt);
-                return $filenameWithExt;
-            }
-            return null;
-        }
     }
 }

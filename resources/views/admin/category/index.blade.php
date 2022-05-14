@@ -100,6 +100,10 @@
                                         <tr>
                                             <td> {{ $n++ }}</td>
                                             <td>
+                                                {{-- {{ $category->cat_name}}
+                                                {{  $category->subcat_name . ' > ' }}
+                                                {{  $category->sscat_name  .' > '  }}
+                                                {{  $category->ssscat_name . ' > '  }} --}}
                                                 {{
                                                     $category->cat_name . ' > ' .
                                                     $category->subcat_name .' > ' .
