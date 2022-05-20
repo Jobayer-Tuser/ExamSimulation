@@ -2,12 +2,7 @@
 @section('title', 'All Test Bank')
 @section('breadcrumb', ' Test list ')
 
-@section('button')
-    <button data-toggle="modal" data-target="#createTest" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
-@endsection
-
 @section('content')
-
 <section class="basic-elements">
     <div class="row  mt-1">
         <form action="{{ route('test.store') }}" method="POST">
@@ -64,7 +59,7 @@
                             <thead>
                                 <tr>
                                     <th class="min">Sl No.</th>
-                                    <th>Test Name </th>
+                                    <th> Test Name </th>
                                     <th class="min">Action</th>
                                 </tr>
                             </thead>
@@ -72,20 +67,18 @@
                                 @php
                                     $n = 1;
                                 @endphp
-                                @if (!empty($tests))
+                                @if ( !empty($tests) )
                                     @foreach ($tests as $test)
                                         <tr>
                                             <td> {{ $n++ }} </td>
                                             <td> {{ $test->name }} </td>
                                             <td>
-                                                <button data-toggle="modal" data-target="#editQuestion" type="button" class="btn  btn-warning btn-sm"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
-                                                <button data-toggle="modal" data-target="#deleteQuestion" type="button" class="btn btn-danger btn-sm"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
+                                                <button data-teurl="{{ route('test.update', $test->id) }}" data-tname="{{ $test->name }}" data-toggle="modal" data-target="#editTest" type="button" class="btn  btn-warning btn-sm editTestBtn"><i class="font-medium-1 icon-line-height feather icon-edit"></i> Edit </button>
+                                                <button data-tdurl="{{ route('test.destroy', $test->id) }}" data-dname="{{ $test->name }}" data-toggle="modal" data-target="#deleteTest" type="button" class="btn btn-danger btn-sm deleteTestBtn"><i class="font-medium-1 icon-line-height feather icon-trash-2"></i> Delete </button>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @endif
-
-
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -102,57 +95,15 @@
     </div>
 </section>
 
-<!-- Careate Question Modal -->
-<div class="modal fade text-left" id="createTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel17"> Create New Test </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
-                            <fieldset class="form-group">
-                                <label for="parent_category"> Test Name </label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
-                                    <option selected="">Select Test</option>
-                                    <option value="BSC Exam">BSC Exam </option>
-                                    <option value="PSC Exam"> PSC Exam</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
-                            <fieldset class="form-group">
-                                <label for="question_details">Question name</label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
-                                    <option selected="">Select Question</option>
-                                    <option value="BSC Exam">BSC Exam </option>
-                                    <option value="PSC Exam"> PSC Exam</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-outline-success">Save</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
 <!-- Edit Question Modal -->
 <div class="modal fade text-left" id="editQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="">
+        <form method="POST" class="editTestFrom">
+            @method('PATCH')
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel17"> Edit Question </h4>
+                    <h4 class="modal-title" id="myModalLabel17"> Edit Test </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -161,30 +112,68 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                             <fieldset class="form-group">
-                                <label for="parent_category">Parent Category</label>
-                                <select name="parent_category" class="custom-select block" id="parent_category">
-                                    <option selected="">Select Category</option>
-                                    <option value="Full width">BSC Exam </option>
-                                    <option value="Square"> PSC Exam</option>
-                                </select>
+                                <label for="parent_category">Test name</label>
+                                <input type="text" name="name" id="test_name" class="form-control testName">
                             </fieldset>
                         </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
-                            <fieldset class="form-group">
-                                <label for="question_details">Question Details</label>
-                                <textarea name="question_details" type="text" class="form-control" id="question_details">Who is the prime miniter of bangldesh?</textarea>
-                            </fieldset>
-                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-success">Update</button>
+                    <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
+<div class="modal fade text-left" id="deleteTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-default" role="document">
+        <form class="deleteTestForm" method="POST">
+            @csrf
+            @method('DELETE')
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17"> <strong> Delete Admin </strong>  </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5> Are you sure want to delete <strong class="testName"> </strong>!</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-success" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-danger">Confirm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@push('script')
+    <script>
+        $(document).ready(function(){
+            //edit admin type action
+            $(document).on('click', '.editTestBtn', function(e){
+                let url     = $(this).data('teurl');
+                let name    = $(this).data('tname');
+
+                $(".testName").val(name);
+                $(".editTestFrom").attr('action', url);
+            });
+
+            //delete admin type action
+            $(document).on('click', '.deleteTestBtn', function(e){
+                let name    = $(this).data('dname');
+                let url     = $(this).data('tdurl');
+
+                $('.testName').text(name);
+                $('.deleteTestForm').attr('action', url);
+            })
+        });
+    </script>
+@endpush
 @endsection
 

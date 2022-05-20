@@ -147,16 +147,8 @@
             process: {
                 url: "{{ route('slider.file') }}",
             },
-            revert: {
-                url: "{{ route('slider.image.delete') }}",
-            }
         },
     });
-
-    if ( $existingFilePath == null ) {
-    }
-
-
 </script>
 
 @endpush

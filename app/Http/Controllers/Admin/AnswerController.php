@@ -44,13 +44,13 @@ class AnswerController extends Controller
 
             $question = Question::create([
                 'category_id' => request('parent_category_id'),
-                'test_id' => request('test_id')[$i],
-                'details' => request('question_details'),
+                'test_id'     => request('test_id')[$i],
+                'details'     => request('question_details'),
             ]);
 
             foreach( request('answer') as $key => $value ) {
 
-                if ( ! empty($value['image_options_'. $key]) ){
+                if ( ! empty($value['image_options_'. $key]) ) {
 
                     $file = $value['image_options_'. $key];
                     $fileNameToSave = "ANSWER_". $file->getClientOriginalName();
@@ -59,12 +59,12 @@ class AnswerController extends Controller
                         $path =  $file->storeAs('storage/answer-image/', $fileNameToSave);
                     }
                 }
-                $answer = Answer::create([
-                    'question_id' => $question->id,
-                    'answer_type' => $value['answer_type_'. $key],
-                    'text_answer' => $value['text_options_'. $key],
-                    'image_answer' => $fileNameToSave,
-                    'correct_answer' => $value['correct_answer_'. $key],
+                Answer::create([
+                    'question_id'   => $question->id,
+                    'answer_type'   => $value['answer_type_'. $key],
+                    'text_answer'   => $value['text_options_'. $key],
+                    'image_answer'  => $fileNameToSave,
+                    'correct_answer'=> $value['correct_answer_'. $key],
                 ]);
 
             }
@@ -104,40 +104,42 @@ class AnswerController extends Controller
      */
     public function update(UpdateAnswerRequest $request, Answer $answer)
     {
-        return $request;
-
+        // return $request;
         for( $i = 0, $j = count(request('test_id')); $i < $j; $i++ ) {
 
-            $question = Question::where('id', $request->question_id)->get();
-            $question->category_id = $request->parent_category_id;
-            $question->test_id = $request->test_id[$i];
-            $question->details = $request->question_details;
+            $question = Question::findOrFail($request->question_id);
+            // dd($question);
+            $question->category_id  = $request->parent_category_id;
+            $question->test_id      = $request->test_id[$i];
+            $question->details      = $request->question_details;
             $question->save();
 
             foreach( request('answer') as $key => $value ) {
 
-                $answer = Answer::where('id', $value['answer_id_'. $key]);
+                $answer = Answer::findOrFail($value['answer_id_'. $key]);
+                // dd($answer);
 
-                if ( ! empty($value['image_options_'. $key]) ){
-
+                if ( !empty($value['image_options_'. $key]) )
+                {
+                    // dd("here");
                     $file = $value['image_options_'. $key];
                     $fileNameToSave = "ANSWER_". $file->getClientOriginalName();
 
+                    $answer->image_answer   = $fileNameToSave;
                     $oldFile = public_path('storage/answer-image/'. $answer->image_answer );
 
                     if( file_exists($oldFile) ){
                         unlink($oldFile);
-
-                        $storeNewFile =  $file->storeAs('public/answer-image/', $fileNameToSave);
                     }
+
+                    $file->storeAs('public/answer-image/', $fileNameToSave);
                 }
-                $answer->question_id = $question->id;
-                $answer->answer_type = $value['answer_type_'. $key];
-                $answer->text_answer = $value['text_options_'. $key];
-                $answer->image_answer = $fileNameToSave;
+                // dd($answer->image_answer);
+                $answer->question_id    = $question->id;
+                $answer->answer_type    = $value['answer_type_'. $key];
+                $answer->text_answer    = $value['text_options_'. $key];
                 $answer->correct_answer = $value['correct_answer_'. $key];
                 $answer->save();
-
             }
         }
 

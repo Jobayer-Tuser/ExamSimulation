@@ -21,33 +21,17 @@
                                         <select name="parent_category_id" class="custom-select @error('parent_category_id') is-invalid @enderror" id="parent_category">
                                             <option selected="">Select Category</option>
                                             @if ( !empty($categories))
+
                                                 @foreach ($categories as $category )
 
-                                                    @dump($category)
+                                                @php
+                                                $var = $category->cat_name . ' > ' . $category->subcat_name .' > ' .$category->sscat_name . ' > ' .$category->ssscat_name
+
+                                                @endphp
+                                                    {{-- @dump($category) --}}
 
                                                     {{-- <option value="{{ $category->cat_id }}" @if (old('parent_category_id') == $category->id) selected @endif > --}}
-                                                        <option value="
-                                                        @php
-                                                            if ( !empty($category->ssscat_id) ) {
-                                                                $category->ssscat_id;
-                                                                unset($category->sscat_id, $category->subcat_id, $category->cat_id);
-                                                            }
-                                                            if ( !empty($category->subcat_id) ) {
-                                                                $category   ->subcat_id;
-                                                                unset($category->sscat_id, $category->cat_id);
-                                                            }
-                                                            if ( !empty($category->cat_id) ) {
-                                                                $category->cat_id;
-                                                                unset($category->subcat_id, $category->cat_id);
-                                                            }
-                                                        @endphp
-                                                    ">
-                                                    {{
-                                                        $category->cat_name . ' > ' .
-                                                        $category->subcat_name .' > ' .
-                                                        $category->sscat_name . ' > ' .
-                                                        $category->ssscat_name
-                                                    }} </option>
+                                                    <option value=""> {{ preg_replace('/^ > /', '', $var); }} </option>
                                                 @endforeach
                                             @endif
                                         </select>

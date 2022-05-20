@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Test;
+use App\Models\Question;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTestRequest;
 use App\Http\Requests\UpdateTestRequest;
-use App\Models\Test;
-use App\Http\Controllers\Controller;
-use App\Models\Question;
 
 class TestController extends Controller
 {
@@ -74,9 +75,14 @@ class TestController extends Controller
      * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTestRequest $request, Test $test)
+    public function update(Request $request, Test $test)
     {
-        //
+        // return $test;
+        $test->name = $request->name;
+        if($test->save()){
+            return redirect(route('test.index'));
+        }
+
     }
 
     /**
@@ -87,6 +93,8 @@ class TestController extends Controller
      */
     public function destroy(Test $test)
     {
-        //
+        if($test->delete()){
+            return redirect(route('test.index'));
+        }
     }
 }

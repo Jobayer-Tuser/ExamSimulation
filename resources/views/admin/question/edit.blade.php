@@ -24,7 +24,7 @@
                                             <option value="" selected="">Select Category</option>
                                             @if ( !empty($categories))
                                                 @foreach ( $categories as $category)
-                                                <option value="">
+                                                <option value="2">
                                                     {{
                                                         $category->cat_name . ' > ' .
                                                         $category->subcat_name .' > ' .
@@ -92,7 +92,7 @@
                                                         <td>
                                                             <fieldset class="form-group">
                                                                 <input id="textOption{{ $key }}" value="{{ $answer->text_answer }}" name="answer[{{ $key }}][text_options_{{ $key }}]" type="text" class="form-control textOptions" />
-                                                                <input id="imageOption{{ $key }}" value="{{ asset('storage/answer-image/'. $answer->image_answer) }}" name="answer[{{ $key }}][image_options_{{ $key }}]" type="file" class="form-control d-none imageOptions" accept="image/png, image/jpeg, image/jpg"  />
+                                                                <input id="imageOption{{ $key }}" value="{{ asset('public/answer-image/'. $answer->image_answer) }}" name="answer[{{ $key }}][image_options_{{ $key }}]" type="file" class="form-control d-none imageOptions" accept="image/png, image/jpeg, image/jpg"  />
                                                             </fieldset>
                                                         </td>
                                                         <td>
