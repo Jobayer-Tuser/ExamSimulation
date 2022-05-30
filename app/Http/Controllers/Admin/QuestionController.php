@@ -73,13 +73,11 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        // return $question;
-        // return $data['tests'] = Question::with('tests')->where('id', $question->id)->get();
+
         $data['answers'] = Answer::where('question_id', $question->id)->get();
         $data['categories'] = $this->category->getAllCategories();
         $data['question']  = $question;
         $data['tests']      = Test::select('id', 'name')->get();
-
         return view('admin.question.edit', $data);
     }
 

@@ -1,15 +1,11 @@
 @extends('admin.layouts.app')
-
 @section('title', ' Category List')
-
 @section('breadcrumb', 'Category list')
-
 @section('button')
     <button data-toggle="modal" data-target="#createCategory" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
 @endsection
 
 @section('content')
-
 <section class="basic-elements">
     <div class="row  mt-1">
         <form ction="{{ route('category.store') }}" method="POST">

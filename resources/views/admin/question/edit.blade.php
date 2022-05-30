@@ -3,6 +3,7 @@
 @section('breadcrumb', 'Edit Question & Answer')
 
 @section('content')
+{{-- {{ dd($question->test_id) }} --}}
 <section class="basic-elements">
     <div class="row  mt-1">
         <form action="{{ route('answer.update', $question->id) }}" method="POST" enctype="multipart/form-data">
@@ -21,17 +22,21 @@
                                     <fieldset class="form-group">
                                         <label for="parent_category">Select Category</label>
                                         <select name="parent_category_id" class="custom-select @error('parent_category_id') is-invalid @enderror" id="parent_category">
-                                            <option value="" selected="">Select Category</option>
+                                            <option value="" >Select Category</option>
                                             @if ( !empty($categories))
                                                 @foreach ( $categories as $category)
-                                                <option value="2">
-                                                    {{
-                                                        $category->cat_name . ' > ' .
-                                                        $category->subcat_name .' > ' .
-                                                        $category->sscat_name . ' > ' .
-                                                        $category->ssscat_name
-                                                    }}
-                                                </option>
+                                                @php
+                                                    $cat = $category->cat_name . ' > ' . $category->subcat_name .' > ' . $category->sscat_name . ' > ' . $category->ssscat_name;
+                                                    $remove_this = " > ";
+                                                    $new_str = preg_replace('/'. preg_quote($remove_this, '/') . '$/', '', $cat);
+                                                    $new_str = preg_replace('/'. preg_quote($remove_this, '/') . '$/', '', $new_str);
+                                                    $new_str = preg_replace('/'. preg_quote($remove_this, '/') . '$/', '', $new_str);
+
+                                                    $cat_id = $category->cat_id . $category->subcat_id . $category->sscat_id . $category->ssscat_id;
+                                                    $selected_val = substr($cat_id, -1)
+                                                @endphp
+                                                {{-- <option value="{{ $cat_id }}">{{ $new_str }}</option> --}}
+                                                <option value="{{ $selected_val }}" {{ $question->category_id  ==  $selected_val ? 'selected' : '' }}>{{ $new_str }}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -86,7 +91,12 @@
 
                                         <tbody class="multipleOptions">
                                             @if ( !empty($answers) )
-                                                @foreach ( $answers as $key => $answer )
+
+                                            @foreach ( $answers as $key => $answer )
+                                            @php
+                                                end($answer);
+                                            @endphp
+                                            <input type="hidden" class="optionCount" name="count" value="{{ key($answer) }}">
                                                 <input type="hidden" name="answer[{{ $key }}][answer_id_{{ $key }}]" value="{{ $answer->id }}">
                                                     <tr id="row{{ $key }}">
                                                         <td>
@@ -127,6 +137,7 @@
                                                             @endif
                                                         </td>
                                                     </tr>
+                                                    <input type="hidden" class="optionCount" name="count" value="{{ $key }}">
                                                 @endforeach
                                             @endif
                                         </tbody>
@@ -149,7 +160,8 @@
 
         var addButton = $('.addOptions'); //Add button selector
         var wrapper = $('.multipleOptions'); //Input field wrapper
-        let optionCount = $('.removeOptions').val();
+        let optionCount = 7;
+        console.log(optionCount);
 
         //Once add button is clicked
         $(addButton).click( function() {

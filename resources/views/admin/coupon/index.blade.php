@@ -1,12 +1,83 @@
 @extends('admin.layouts.app')
 @section('title', 'Coupon list')
 @section('breadcrumb', ' Coupon list')
-
-@section('button')
-    <button data-toggle="modal" data-target="#createCoupon" type="button" class="btn-icon btn btn-secondary btn-round"><i class="fa fa-plus-circle"></i> Create new </button>
-@endsection
-
 @section('content')
+
+<section class="basic-elements">
+    <div class="row  mt-1">
+        <form ction="{{ route('category.store') }}" method="POST">
+            @csrf
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Create Category</h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-3 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="coupon_code">Coupon Code</label>
+                                        <input name="coupon_code" type="text" class="form-control" id="coupon_code"/>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="dicount_type"> Discount type </label>
+                                        <select name="dicount_type" class="custom-select block" id="dicount_type">
+                                            <option selected="">Select Type</option>
+                                            <option value="percent">Percent % </option>
+                                            <option value="taka">Taka</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="discount_amount">Discount Amount</label>
+                                        <input name="discount_amount" type="text" class="form-control" id="discount_amount"/>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="total_usable"> Total Usable</label>
+                                        <input name="total_usable" type="number" class="form-control" id="total_usable"/>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="total_usable_by_person"> Total usable by person</label>
+                                        <input name="total_usable_by_person" type="number" class="form-control" id="total_usable_by_person"/>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="discount_start"> Discount Start </label>
+                                        <input name="discount_start" type="date" class="form-control" id="discount_start"/>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="discount_end"> Discount End </label>
+                                        <input name="discount_end" type="date" class="form-control" id="discount_end"/>
+                                    </fieldset>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 mt-2">
+                                    <button type="button" class="btn btn-outline-success">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
 
 <section id="configuration">
     <div class="row mt-1">
